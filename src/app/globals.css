@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Brand */
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-tape: var(--tape);
+  --color-tape-deep: var(--tape-deep);
+  --color-masking: var(--masking);
+  --color-whatsapp: #1fa855;
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+  }
+  /* Hero entrance runs in pure CSS at first paint, so it never waits for JS.
+     Text (LCP candidates) only moves — never starts transparent — so LCP is recorded on first paint. */
+  @keyframes rise {
+    from { transform: translateY(0.55em); }
+    to { transform: none; }
+  }
+  @keyframes rise-fade {
+    from { transform: translateY(1.25rem); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+}
+
+:root {
+  --ink: #131418;
+  --ink-soft: #24262c;
+  --paper: #f5f2eb;
+  --paper-deep: #ebe5d8;
+  --tape: #d63f24;
+  --tape-deep: #b83118;
+  --masking: #f1c84b;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #fbfaf6;
+  --card-foreground: var(--ink);
+  --popover: #fbfaf6;
+  --popover-foreground: var(--ink);
+  --primary: var(--tape);
+  --primary-foreground: #fff;
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: #5d5b55;
+  --accent: var(--paper-deep);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: color-mix(in oklab, var(--ink) 12%, transparent);
+  --input: color-mix(in oklab, var(--ink) 16%, transparent);
+  --ring: var(--tape);
+  --radius: 0.9rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    interpolate-size: allow-keywords;
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    line-height: 1.85;
+  }
+  h1, h2, h3, h4 {
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--tape);
+    color: #fff;
+  }
+  /* Lenis */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Small piece of translucent masking tape stuck on a card corner */
+  .tape-corner {
+    position: absolute;
+    inset-block-start: -10px;
+    inset-inline-start: 50%;
+    width: 84px;
+    height: 24px;
+    translate: 50% 0;
+    rotate: -4deg;
+    background: color-mix(in oklab, var(--masking) 72%, transparent);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+    mask: linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent 0) ,
+      repeating-linear-gradient(0deg, #000 0 3px, transparent 3px 5px);
+    mask-composite: add;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .hero-word {
+    display: inline-block;
+    animation: var(--animate-rise);
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+  /* decorative hero parts (badge, buttons, stats) may fade — they're never the LCP element */
+  .hero-fade {
+    animation: rise-fade 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 60ms + 100ms);
+  }
+
+  /* Horizontal track: native swipe on touch / small screens, GSAP-driven on desktop */
+  .h-track {
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+  .h-track::-webkit-scrollbar { display: none; }
+  .h-track > * { scroll-snap-align: start; }
+  .is-hscroll .h-viewport {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .is-hscroll .h-track {
+    width: max-content;
+    overflow: visible;
+    scroll-snap-type: none;
+    will-change: transform;
+  }
+
+  /* Scroll-stepped section (FAQ): sticky while scrolling walks through the items */
+  .steps-ui { display: none; }
+  .is-stepped .steps-ui { display: flex; }
+  .is-stepped .steps-viewport {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .is-stepped .steps-viewport > .container-x { padding-block: 0; }
+
+  /* smooth open/close for native <details> where supported; instant elsewhere */
+  .faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+
+  .site-header {
+    transition: translate 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s, box-shadow 0.3s;
+  }
+  .site-header[data-hidden="true"] {
+    translate: 0 -110%;
+  }
+  .site-header[data-scrolled="true"] {
+    box-shadow: 0 6px 30px -12px rgb(19 20 24 / 0.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

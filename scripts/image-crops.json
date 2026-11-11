@@ -1,0 +1,42 @@
+{
+  "_help": "key -> { src: file in assets/client-photos, rect: [left, top, width, height] in source pixels, fit: cover | contain | blur, bg: hex | auto }. Run `npm run images` after editing. Replace a crop with a high-resolution product photo by pointing src/rect at the new file.",
+
+  "products/nano-cellulose-double-sided-tape": { "src": "11-nano-catalog-cellulose-opp-aluminium.jpg", "rect": [648, 92, 228, 232], "fit": "contain", "bg": "auto" },
+  "products/nano-opp-glass-double-sided-tape": { "src": "11-nano-catalog-cellulose-opp-aluminium.jpg", "rect": [650, 345, 226, 240], "fit": "contain", "bg": "auto" },
+  "products/nano-aluminum-mesh-tape-170-micron": { "src": "11-nano-catalog-cellulose-opp-aluminium.jpg", "rect": [650, 622, 228, 244], "fit": "contain", "bg": "auto" },
+  "products/nano-aluminum-foil-tape-50-micron": { "src": "11-nano-catalog-cellulose-opp-aluminium.jpg", "rect": [655, 895, 222, 250], "fit": "contain", "bg": "auto" },
+
+  "products/nano-double-sided-foam-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [640, 72, 224, 256], "fit": "contain", "bg": "auto" },
+  "products/gergonne-car-trim-foam-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [648, 350, 216, 256], "fit": "contain", "bg": "auto" },
+  "products/nano-wide-roll-double-sided-foam-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [648, 636, 216, 262], "fit": "contain", "bg": "auto" },
+  "products/knauf-joint-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [648, 928, 216, 248], "fit": "contain", "bg": "auto" },
+
+  "products/nano-acrylic-gel-double-sided-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 128, 195, 232], "fit": "contain", "bg": "auto" },
+  "products/quick-tape-masking-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 396, 195, 236], "fit": "contain", "bg": "auto" },
+  "products/nano-4970-double-sided-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 655, 195, 240], "fit": "contain", "bg": "auto" },
+  "products/nano-4965-double-sided-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 930, 195, 240], "fit": "contain", "bg": "auto" },
+
+  "products/nano-crystal-packaging-tape": { "src": "10-nano-catalog-crystal-duct-filament.jpg", "rect": [648, 84, 228, 232], "fit": "contain", "bg": "auto" },
+  "products/quick-tape-cloth-duct-tape": { "src": "10-nano-catalog-crystal-duct-filament.jpg", "rect": [640, 346, 238, 240], "fit": "contain", "bg": "auto" },
+  "products/quick-tape-cross-weave-filament-tape": { "src": "10-nano-catalog-crystal-duct-filament.jpg", "rect": [648, 625, 230, 262], "fit": "contain", "bg": "auto" },
+  "products/quick-tape-parallel-filament-tape": { "src": "10-nano-catalog-crystal-duct-filament.jpg", "rect": [652, 920, 226, 262], "fit": "contain", "bg": "auto" },
+
+  "products/qbono-6665-pet-red-double-sided-tape": { "src": "01-qbono-6665-pet-red-liner.jpg", "rect": [150, 830, 500, 362], "fit": "contain", "bg": "#ffffff" },
+  "products/qbono-pvc-electrical-tape": { "src": "03-qbono-pvc-electrical-tape.jpg", "rect": [380, 20, 440, 440], "fit": "contain", "bg": "auto" },
+  "products/qbono-4440-cellulose-double-sided-tape": { "src": "04-qbono-4440-tissue-tape.jpg", "rect": [630, 880, 240, 270], "fit": "contain", "bg": "auto" },
+  "products/qbono-2185-scrim-double-sided-tape": { "src": "05-qbono-2185-scrim-tape.jpg", "rect": [192, 800, 330, 385], "fit": "contain", "bg": "auto" },
+  "products/qbono-xpe-double-sided-foam-tape": { "src": "06-qbono-xpe-foam-tape.jpg", "rect": [135, 40, 150, 250], "fit": "contain", "bg": "auto" },
+
+  "gallery/qbono-pvc-electrical-colors": { "src": "03-qbono-pvc-electrical-tape.jpg", "rect": [60, 30, 450, 300], "fit": "contain", "bg": "#ffffff" },
+  "gallery/nano-packaging-tape-pair": { "src": "12-nano-catalog-back-cover-contact.jpg", "rect": [520, 295, 265, 320], "fit": "contain", "bg": "auto" },
+  "gallery/nano-packaging-tape-machine-roll": { "src": "12-nano-catalog-back-cover-contact.jpg", "rect": [50, 345, 240, 255], "fit": "contain", "bg": "auto" },
+  "gallery/tesa-white-cloth-tape": { "src": "16-photo-tesa-white-cloth-tape.jpg", "rect": [50, 170, 500, 500], "fit": "cover" },
+  "gallery/tesa-and-quick-masking-tape": { "src": "19-photo-tesa-and-quick-masking-tape.jpg", "rect": [60, 378, 440, 324], "fit": "blur" },
+  "gallery/tesa-blue-tape": { "src": "20-photo-tesa-blue-tape.jpg", "rect": [35, 150, 530, 530], "fit": "cover" },
+
+  "categories/filament-tape": { "src": "13-photo-filament-tape.jpg", "rect": [10, 247, 588, 588], "fit": "cover" },
+  "gallery/lohmann-double-sided-rolls": { "src": "14-photo-lohmann-rolls.jpg", "rect": [132, 427, 226, 226], "fit": "cover" },
+  "categories/branded-tapes": { "src": "15-photo-brands-sign-tesa-lohmann-3m.jpg", "rect": [53, 289, 502, 502], "fit": "cover" },
+  "categories/heat-resistant-cloth-tape": { "src": "17-photo-tesa-black-cloth-tape.jpg", "rect": [20, 250, 570, 570], "fit": "cover" },
+  "categories/packaging-tape": { "src": "12-nano-catalog-back-cover-contact.jpg", "rect": [520, 295, 265, 320], "fit": "contain", "bg": "auto" }
+}
