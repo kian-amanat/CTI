@@ -1,3 +1,4 @@
+import { MoveHorizontalIcon } from "lucide-react";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import type { DataTable } from "@/data/products";
 import { bidi, isLtr } from "@/lib/bidi";
@@ -5,14 +6,21 @@ import { cn } from "@/lib/utils";
 
 /**
  * A catalog table. When the first header is "مشخصه" (property) the first column acts as the row header.
- * Wide tables scroll sideways on phones instead of squeezing the numbers.
+ * Wide tables scroll sideways on phones instead of squeezing the numbers; a line above them says so.
  */
 export function DataTableView({ table, subject }: { table: DataTable; subject: string }) {
   const rowHeaders = table.head[0] === "مشخصه";
+  const wide = table.head.length > 3;
   return (
     <figure>
+      {wide && (
+        <p className="mb-3 flex items-center gap-2 px-1 text-xs text-muted-foreground sm:hidden">
+          <MoveHorizontalIcon className="size-4 shrink-0" aria-hidden="true" />
+          برای دیدن همهٔ ستون‌ها، جدول را به چپ و راست بکشید
+        </p>
+      )}
       <div className="overflow-hidden rounded-[1.6rem] border border-ink/10 bg-card">
-        <Table className={cn(table.head.length > 3 && "min-w-[34rem]")}>
+        <Table className={cn(wide && "min-w-[40rem]")}>
           <TableCaption className="sr-only">
             {table.title}؛ {subject}
           </TableCaption>

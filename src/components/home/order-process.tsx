@@ -5,7 +5,7 @@ import { toFaDigits } from "@/lib/format";
 
 export function OrderProcess() {
   return (
-    <section aria-labelledby="process-title" className="bg-paper-deep py-24 lg:py-36">
+    <section aria-labelledby="process-title" className="bg-paper-deep py-16 sm:py-24 lg:py-36">
       <div className="container-x">
         <SectionHeading
           id="process-title"
@@ -14,7 +14,7 @@ export function OrderProcess() {
           description="خرید ساده است: بدون ثبت‌نام و سبد خرید. قیمت روز را بپرسید و سفارش دهید."
           align="center"
         />
-        <div data-draw-root className="relative mt-16 lg:mt-24">
+        <div data-draw-root className="relative mt-10 sm:mt-16 lg:mt-24">
           {/* a strip of tape drawn across the steps as you scroll */}
           <svg className="absolute inset-x-0 top-10 hidden h-24 w-full lg:block" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
             <path
@@ -27,21 +27,28 @@ export function OrderProcess() {
               strokeLinecap="round"
             />
           </svg>
-          <ol data-reveal-group className="relative grid gap-6 lg:grid-cols-3 lg:gap-10">
+          {/* phones: the number sits beside the text (a compact row per step); from `sm` up: centred cards */}
+          <ol data-reveal-group className="relative grid gap-3 sm:gap-6 lg:grid-cols-3 lg:gap-10">
             {orderSteps.map((s, i) => (
-              <li key={s.title} data-reveal-item className="relative rounded-[1.8rem] bg-card p-8 pt-10 text-center shadow-[0_20px_50px_-30px_rgb(19_20_24/0.3)]">
-                <span className="mx-auto grid size-16 place-items-center rounded-full bg-ink text-2xl font-black text-paper ring-8 ring-paper-deep">
+              <li
+                key={s.title}
+                data-reveal-item
+                className="relative grid grid-cols-[auto_1fr] items-start gap-x-4 rounded-[1.4rem] bg-card p-5 shadow-[0_20px_50px_-30px_rgb(19_20_24/0.3)] sm:block sm:rounded-[1.8rem] sm:p-8 sm:pt-10 sm:text-center"
+              >
+                <span className="grid size-12 place-items-center rounded-full bg-ink text-xl font-black text-paper sm:mx-auto sm:size-16 sm:text-2xl sm:ring-8 sm:ring-paper-deep">
                   {toFaDigits(i + 1)}
                 </span>
-                <h3 className="mt-6 text-xl font-black">{s.title}</h3>
-                <p className="mt-3 leading-8 text-muted-foreground">{s.text}</p>
+                <div>
+                  <h3 className="text-lg font-black sm:mt-6 sm:text-xl">{s.title}</h3>
+                  <p className="mt-2 leading-8 text-muted-foreground sm:mt-3">{s.text}</p>
+                </div>
               </li>
             ))}
           </ol>
         </div>
-        <div data-reveal="up" className="mt-14 flex flex-wrap justify-center gap-3 lg:mt-16">
-          <CallButton size="lg" trackLabel="process" showNumber />
-          <WhatsAppButton size="lg" trackLabel="process" />
+        <div data-reveal="up" data-cta className="mt-10 flex flex-col gap-3 sm:mt-14 sm:flex-row sm:flex-wrap sm:justify-center lg:mt-16">
+          <CallButton size="lg" trackLabel="process" showNumber className="w-full sm:w-auto" />
+          <WhatsAppButton size="lg" trackLabel="process" className="w-full sm:w-auto" />
         </div>
       </div>
     </section>

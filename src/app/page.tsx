@@ -3,7 +3,6 @@ import { siteConfig } from "@/config/site";
 import { homeFaq } from "@/data/home";
 import { products } from "@/data/products";
 import { Hero } from "@/components/home/hero";
-import { Marquee } from "@/components/home/marquee";
 import { CategoriesGrid } from "@/components/home/categories-grid";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { WhyUs } from "@/components/home/why-us";
@@ -28,7 +27,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee />
       <CategoriesGrid />
       <FeaturedProducts />
       <WhyUs />
@@ -37,7 +35,7 @@ export default function HomePage() {
       {/* Desktop: the section holds still while scrolling opens each answer in turn (see data-steps in motion-root) */}
       <section data-steps aria-labelledby="faq-title" className="relative">
         <div className="steps-viewport">
-          <div className="container-x grid gap-12 py-24 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-16 lg:py-36">
+          <div className="container-x grid gap-8 py-16 sm:gap-12 sm:py-24 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-16 lg:py-36">
             <div>
               <SectionHeading
                 id="faq-title"

@@ -5,7 +5,7 @@ import type { Ticker } from "@/components/motion/smooth-scroll";
 
 /**
  * The scroll-scrubbed scenes of the home page: number counters, the line that draws itself, the hero text drifting
- * away, the marquee leaning with scroll speed, the horizontal product track and the stepped FAQ.
+ * away, the horizontal product track and the stepped FAQ.
  * These need GSAP + ScrollTrigger (~45 KB gzipped), so motion-root.tsx loads this file only on a page that has one
  * of those markers. The simple entrance animations live in lite-motion.ts and need none of it.
  */
@@ -79,19 +79,6 @@ export async function setupScenes(main: HTMLElement, smooth?: SmoothScroll) {
           opacity: 0.15,
           ease: "none",
           scrollTrigger: { trigger: el.closest("[data-hero]") ?? el, start: "top top", end: "bottom top", scrub: true },
-        });
-      });
-
-      /* marquee leans with scroll velocity */
-      $("[data-velocity-skew]").forEach((el) => {
-        const skew = gsap.quickTo(el, "skewX", { duration: 0.5, ease: "power3" });
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top bottom",
-          end: "bottom top",
-          onUpdate: (self) => skew(gsap.utils.clamp(-4, 4, self.getVelocity() / -400)),
-          onLeave: () => skew(0),
-          onLeaveBack: () => skew(0),
         });
       });
 

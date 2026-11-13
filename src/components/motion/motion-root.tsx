@@ -12,13 +12,13 @@ import { usePathname } from "next/navigation";
  *  - animation code never blocks the first render;
  *  - a page with only simple entrance animations never downloads GSAP (see the three files below).
  *
- *   lite-motion.ts    fade/rise/clip, staggered groups, word-by-word headings, tape strips   (every page, ~2 KB)
+ *   lite-motion.ts    fade/rise/clip, staggered groups, word-by-word headings                (every page, ~2 KB)
  *   smooth-scroll.ts  Lenis wheel smoothing                                                  (mouse/trackpad only)
  *   gsap-scenes.ts    scrubbed scenes: counters, horizontal track, stepped FAQ, ...          (pages that have one, ~45 KB)
  */
 
 /** Markers that need GSAP + ScrollTrigger. Only the home page has them. */
-const SCENES = "[data-hscroll], [data-steps], [data-counter], [data-draw], [data-hero-content], [data-velocity-skew]";
+const SCENES = "[data-hscroll], [data-steps], [data-counter], [data-draw], [data-hero-content]";
 
 export function MotionRoot() {
   const pathname = usePathname();

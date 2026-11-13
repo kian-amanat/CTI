@@ -5,36 +5,27 @@ import { mapLinks } from "@/lib/format";
 
 export function FinalCta({ title = "قیمت روز را همین حالا بپرسید" }: { title?: string }) {
   return (
-    <section aria-labelledby="cta-title" className="px-2 py-6 sm:px-3">
-      <div data-reveal="clip" className="parallax-root relative isolate overflow-hidden rounded-[2rem] bg-tape px-6 py-16 text-white sm:px-12 lg:rounded-[2.75rem] lg:py-24">
+    // data-cta: the phone bottom bar steps aside while this block (which has the same buttons) is on screen
+    <section aria-labelledby="cta-title" data-cta className="px-2 py-6 sm:px-3">
+      <div data-reveal="clip" className="relative isolate overflow-hidden rounded-[2rem] bg-tape px-5 py-14 text-white sm:px-12 sm:py-16 lg:rounded-[2.75rem] lg:py-24">
         <div className="noise absolute inset-0 -z-10 opacity-20 mix-blend-overlay" />
-        <div
-          data-parallax
-          style={{ "--parallax": 18 } as React.CSSProperties}
-          aria-hidden="true"
-          className="absolute -top-10 -left-24 -z-10 h-24 w-[32rem] -rotate-12 bg-masking/90 shadow-lg"
-        />
-        <div
-          data-parallax
-          style={{ "--parallax": -14 } as React.CSSProperties}
-          aria-hidden="true"
-          className="absolute -right-20 -bottom-6 -z-10 h-20 w-[28rem] rotate-6 bg-ink/90"
-        />
+        {/* a soft light from above gives the flat red some depth */}
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-3/4 bg-[radial-gradient(ellipse_at_50%_0%,rgb(255_255_255/0.2),transparent_70%)]" />
         <div className="mx-auto max-w-3xl text-center">
-          <h2 id="cta-title" data-split className="text-3xl font-black sm:text-5xl lg:text-6xl lg:leading-[1.25]">
+          <h2 id="cta-title" data-split className="text-[1.9rem] font-black sm:text-5xl lg:text-6xl lg:leading-[1.25]">
             {title}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl leading-8 text-white/85">
+          <p className="mx-auto mt-5 max-w-xl leading-8 text-white/85 sm:mt-6">
             قیمت‌ها به‌خاطر نوسان بازار روی سایت درج نمی‌شوند. تماس بگیرید یا پیام بدهید تا قیمت، موجودی و ابعاد مورد نیازتان را
             اعلام کنیم.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <CallButton size="lg" showNumber trackLabel="final-cta" className="bg-ink shadow-none hover:bg-ink/85" />
-            <WhatsAppButton size="lg" tone="dark" trackLabel="final-cta" className="border-white/40" />
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center">
+            <CallButton size="lg" showNumber trackLabel="final-cta" className="w-full bg-ink shadow-none hover:bg-ink/85 sm:w-auto" />
+            <WhatsAppButton size="lg" tone="dark" trackLabel="final-cta" className="w-full border-white/40 sm:w-auto" />
           </div>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 text-sm text-white/85 sm:flex-row sm:gap-8">
-            <a href={mapLinks.google} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:underline">
-              <MapPinIcon className="size-4" />
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 text-sm text-white/85 sm:mt-10 sm:flex-row sm:gap-8">
+            <a href={mapLinks.google} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 hover:underline">
+              <MapPinIcon className="size-4 shrink-0" />
               {siteConfig.address.short}
             </a>
           </div>

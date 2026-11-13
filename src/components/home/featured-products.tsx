@@ -12,7 +12,7 @@ export function FeaturedProducts() {
   const items = featuredProducts();
   return (
     <section data-hscroll aria-labelledby="featured-title" className="relative bg-paper-deep">
-      <div className="h-viewport py-24 lg:py-0">
+      <div className="h-viewport py-16 sm:py-24 lg:py-0">
         <div className="container-x flex items-end justify-between gap-6">
           <SectionHeading
             id="featured-title"
@@ -26,7 +26,7 @@ export function FeaturedProducts() {
             <p className="mt-2 text-xs text-muted-foreground">برای دیدن بقیه، اسکرول کنید</p>
           </div>
         </div>
-        <div className="h-track mt-12 flex gap-5 overflow-x-auto px-4 pt-4 pb-8 sm:px-6 lg:mt-16 lg:gap-7 lg:ps-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pe-[30vw]">
+        <div className="h-track mt-8 flex gap-4 overflow-x-auto px-4 pt-4 pb-4 sm:mt-12 sm:gap-5 sm:px-6 sm:pb-8 lg:mt-16 lg:gap-7 lg:ps-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pe-[30vw]">
           {items.map((p) => (
             <ProductCard
               key={p.slug}

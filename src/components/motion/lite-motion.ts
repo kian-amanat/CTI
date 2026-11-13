@@ -1,17 +1,16 @@
 /**
- * The simple entrance animations every page uses: things that fade or rise into place, a staggered group of cards,
- * headings that rise word by word, and the small tape strips. They run on the Web Animations API with one
+ * The simple entrance animations every page uses: things that fade or rise into place, a staggered group of cards
+ * and headings that rise word by word. They run on the Web Animations API with one
  * IntersectionObserver, so a page that only needs these does not download GSAP + ScrollTrigger (~45 KB gzipped)
  * and does not run ScrollTrigger's permanent animation-frame loop.
  *
- * Same markup contract as before (data-reveal, data-reveal-group/-item, data-split, data-tape) and the same
- * timings and eases (the cubic-beziers below are GSAP's power2.out, power3.out, expo.out and power2.inOut).
+ * Same markup contract as before (data-reveal, data-reveal-group/-item, data-split) and the same
+ * timings and eases (the cubic-beziers below are GSAP's power2.out, power3.out and power2.inOut).
  * Content is in the HTML for crawlers; only what is below the fold gets hidden, and only once this has loaded.
  */
 
 const POWER2_OUT = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 const POWER3_OUT = "cubic-bezier(0.215, 0.61, 0.355, 1)";
-const EXPO_OUT = "cubic-bezier(0.19, 1, 0.22, 1)";
 const POWER2_IN_OUT = "cubic-bezier(0.455, 0.03, 0.515, 0.955)";
 
 type Frame = Record<string, string>;
@@ -110,7 +109,6 @@ export function setupReveals(main: HTMLElement) {
   const reveals = below("[data-reveal]");
   const groups = below("[data-reveal-group]");
   const headings = below("[data-split]");
-  const strips = below("[data-tape]");
 
   /* fade / rise / clip (the clip reveal wipes a block open from the top) */
   for (const el of reveals) {
@@ -151,14 +149,6 @@ export function setupReveals(main: HTMLElement) {
       heading.style.removeProperty("opacity");
       words.forEach((word, i) => play(word, from, to, { duration: 950, delay: i * 50, easing: POWER3_OUT }, releases[i]));
     });
-  }
-
-  /* tape strips that stick on from the right */
-  for (const strip of strips) {
-    const from: Frame = { transform: "scaleX(0)", transformOrigin: "right center" };
-    const to: Frame = { transform: "none", transformOrigin: "right center" };
-    const release = pose(strip, from);
-    when(strip, 90, () => play(strip, from, to, { duration: 1100, easing: EXPO_OUT }, release));
   }
 
   return () => {

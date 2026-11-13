@@ -34,13 +34,13 @@ export default function AboutPage() {
     <>
       <div className="container-x pt-24 lg:pt-28">
         <PageBreadcrumbs items={[{ name: "درباره ما", path: "/about/" }]} />
-        <header className="mt-10 grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <header className="mt-8 grid gap-10 sm:mt-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div>
             <p dir="ltr" className="text-start text-sm font-bold tracking-wider text-tape-deep uppercase">
               {siteConfig.nameEn}
             </p>
-            <h1 className="mt-5 text-4xl font-black sm:text-5xl lg:leading-[1.3]">درباره {siteConfig.legalName}</h1>
-            <div className="mt-8 space-y-6 leading-9 text-ink/80">
+            <h1 className="mt-4 text-[2rem] font-black sm:mt-5 sm:text-5xl lg:leading-[1.3]">درباره {siteConfig.legalName}</h1>
+            <div className="mt-6 space-y-5 leading-8 text-ink/80 sm:mt-8 sm:space-y-6 sm:leading-9">
               <p>
                 {siteConfig.legalName} با شعار «{siteConfig.tagline}» چسب‌های دوطرفه و نوار چسب‌های صنعتی را از برندهای مختلف در
                 یک‌جا گرد آورده است؛ از چسب‌های دوطرفه سلولزی، شیشه‌ای، فوم و ژله‌ای تا نوار چسب‌های آلومینیومی، برزنتی، کنفی و
@@ -52,19 +52,16 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="relative">
-            <div data-reveal="clip" className="aspect-square overflow-hidden rounded-[2rem]">
-              <Picture image="categories/branded-tapes" alt="تابلوی برندهای tesa، Lohmann و 3M" sizes="(min-width: 1024px) 40vw, calc(100vw - 2rem)" priority preload={false} plate />
-            </div>
-            <span className="tape-corner !top-[-12px] !w-28" aria-hidden="true" />
+          <div data-reveal="clip" className="aspect-square overflow-hidden rounded-[1.6rem] sm:rounded-[2rem]">
+            <Picture image="categories/branded-tapes" alt="تابلوی برندهای tesa، Lohmann و 3M" sizes="(min-width: 1024px) 40vw, calc(100vw - 2rem)" priority preload={false} plate />
           </div>
         </header>
 
-        <section aria-labelledby="values-title" className="py-28 lg:py-36">
-          <h2 id="values-title" data-split className="text-3xl font-black sm:text-4xl">
+        <section aria-labelledby="values-title" className="py-16 sm:py-28 lg:py-36">
+          <h2 id="values-title" data-split className="text-[1.75rem] font-black sm:text-4xl">
             آنچه در کاتالوگ ما می‌بینید
           </h2>
-          <ul data-reveal-group className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
+          <ul data-reveal-group className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-4 lg:mt-16 lg:grid-cols-4">
             {reasons.map((r, i) => (
               <li key={r.title} data-reveal-item className="rounded-[1.6rem] border border-ink/10 bg-card p-6">
                 <span className="text-sm font-black text-tape-deep">{toFaDigits(`0${i + 1}`)}</span>
@@ -75,9 +72,9 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section aria-labelledby="brands-title" className="grid gap-16 pb-28 lg:grid-cols-2 lg:gap-20 lg:pb-36">
+        <section aria-labelledby="brands-title" className="grid gap-14 pb-16 sm:gap-16 sm:pb-28 lg:grid-cols-2 lg:gap-20 lg:pb-36">
           <div>
-            <h2 id="brands-title" data-split className="text-3xl font-black sm:text-4xl">
+            <h2 id="brands-title" data-split className="text-[1.75rem] font-black sm:text-4xl">
               برندها
             </h2>
             <p className="mt-6 leading-9 text-muted-foreground">
@@ -96,7 +93,7 @@ export default function AboutPage() {
             </ul>
           </div>
           <div>
-            <h2 id="others-title" className="text-3xl font-black sm:text-4xl">
+            <h2 id="others-title" className="text-[1.75rem] font-black sm:text-4xl">
               سایر محصولات کاتالوگ NANO
             </h2>
             <p className="mt-6 leading-9 text-muted-foreground">
@@ -105,7 +102,7 @@ export default function AboutPage() {
             <ul className="mt-8 space-y-3.5">
               {nanoCatalogOthers.map((p) => (
                 <li key={p} className="flex items-start gap-3 leading-8">
-                  <span className="mt-3 h-2 w-5 shrink-0 -rotate-12 rounded-[2px] bg-masking" aria-hidden="true" />
+                  <span className="mt-3.5 size-2 shrink-0 rounded-full bg-tape" aria-hidden="true" />
                   {p}
                 </li>
               ))}
@@ -113,8 +110,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section aria-labelledby="visit-title" className="pb-28 lg:pb-36">
-          <h2 id="visit-title" data-split className="text-3xl font-black sm:text-4xl">
+        <section aria-labelledby="visit-title" className="pb-16 sm:pb-28 lg:pb-36">
+          <h2 id="visit-title" data-split className="text-[1.75rem] font-black sm:text-4xl">
             آدرس و تماس
           </h2>
           <p className="mt-6 max-w-3xl leading-9 text-muted-foreground">

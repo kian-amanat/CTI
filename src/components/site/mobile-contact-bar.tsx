@@ -1,20 +1,27 @@
 import { PhoneIcon } from "lucide-react";
 import { WhatsAppIcon } from "@/components/site/brand-icons";
+import { ContactBarState } from "@/components/site/contact-bar-state";
 import { telHref, whatsappHref } from "@/lib/format";
 
-/** Always-visible purchase actions: a bottom bar on phones, a floating WhatsApp bubble on desktop. */
+/**
+ * Always-within-reach purchase actions: a slim bar at the bottom on phones (it steps aside while the page itself shows
+ * the same buttons, see contact-bar-state.tsx), a floating WhatsApp bubble on desktop.
+ */
 export function MobileContactBar() {
   return (
     <>
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/90 p-3 backdrop-blur-xl lg:hidden">
-        <div className="grid grid-cols-2 gap-2">
+      <div
+        id="contact-bar"
+        className="contact-bar fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/90 px-3 pt-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] backdrop-blur-xl lg:hidden"
+      >
+        <div className="grid grid-cols-[3fr_2fr] gap-2">
           <a
             href={telHref}
             data-track="call"
             data-track-label="mobile-bar"
-            className="flex h-12 items-center justify-center gap-2 rounded-full bg-tape font-bold text-white"
+            className="flex h-11 items-center justify-center gap-2 rounded-full bg-tape text-[0.95rem] font-bold text-white transition-colors duration-300 ease-out active:bg-tape-deep"
           >
-            <PhoneIcon className="size-5" />
+            <PhoneIcon className="size-[1.1rem]" />
             تماس برای خرید
           </a>
           <a
@@ -23,13 +30,14 @@ export function MobileContactBar() {
             rel="noopener noreferrer"
             data-track="whatsapp"
             data-track-label="mobile-bar"
-            className="flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp font-bold text-white"
+            className="flex h-11 items-center justify-center gap-2 rounded-full bg-whatsapp text-[0.95rem] font-bold text-white transition-colors duration-300 ease-out active:bg-[#188a49]"
           >
-            <WhatsAppIcon className="size-5" />
+            <WhatsAppIcon className="size-[1.1rem]" />
             واتساپ
           </a>
         </div>
       </div>
+      <ContactBarState />
       <a
         href={whatsappHref()}
         target="_blank"

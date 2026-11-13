@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { navLinks } from "@/config/site";
 import { cx } from "@/lib/cx";
 
-const isActive = (pathname: string, href: string) =>
+export const isActive = (pathname: string, href: string) =>
   href === "/" ? pathname === "/" : pathname.startsWith(href) || (href === "/products/" && pathname.startsWith("/categories/"));
 
 export function NavLinks({ className, onNavigate }: { className?: string; onNavigate?: () => void }) {

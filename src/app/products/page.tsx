@@ -26,17 +26,17 @@ export default function ProductsPage() {
     <>
       <div className="container-x pt-24 lg:pt-28">
         <PageBreadcrumbs items={[{ name: "محصولات", path: "/products/" }]} />
-        <header className="mt-10 max-w-3xl">
-          <h1 className="text-4xl font-black sm:text-5xl lg:leading-[1.3]">
+        <header className="mt-8 max-w-3xl sm:mt-10">
+          <h1 className="text-[2rem] font-black sm:text-5xl lg:leading-[1.3]">
             محصولات؛ <span className="text-tape-deep">انواع چسب دوطرفه</span> و نوار چسب صنعتی
           </h1>
-          <p className="mt-7 text-lg leading-9 text-muted-foreground">
+          <p className="mt-5 leading-8 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-9">
             {faNumber(products.length)} محصول در {faNumber(categories.length)} گروه. روی هر محصول بزنید تا ابعاد، تعداد در کارتن و
             مشخصات فنی را ببینید و برای قیمت روز تماس بگیرید.
           </p>
         </header>
 
-        <nav aria-label="گروه‌های محصول" className="sticky top-16 z-30 -mx-4 mt-14 overflow-x-auto bg-paper/85 px-4 py-3 backdrop-blur-xl lg:top-[4.5rem]">
+        <nav aria-label="گروه‌های محصول" className="stick-under-header z-30 -mx-4 mt-10 overflow-x-auto bg-paper/90 px-4 py-3 backdrop-blur-xl sm:mt-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <ul className="flex w-max gap-2">
             {categories.map((c) => (
               <li key={c.slug}>
@@ -48,11 +48,11 @@ export default function ProductsPage() {
           </ul>
         </nav>
 
-        <div className="space-y-32 pt-20 pb-28">
+        <div className="space-y-20 pt-12 pb-20 sm:space-y-32 sm:pt-20 sm:pb-28">
           {groups.map((g) => (
-            <div key={g.id} className="space-y-24">
-              <div className="border-b-2 border-ink pb-6">
-                <h2 className="text-3xl font-black sm:text-4xl">{g.name}</h2>
+            <div key={g.id} className="space-y-16 sm:space-y-24">
+              <div className="border-b-2 border-ink pb-5 sm:pb-6">
+                <h2 className="text-[1.75rem] font-black sm:text-4xl">{g.name}</h2>
                 <p className="mt-3 text-sm text-muted-foreground">{g.description}</p>
               </div>
               {categoriesByGroup(g.id).map((c) => {
@@ -60,19 +60,19 @@ export default function ProductsPage() {
                 const cover = categoryCover(c);
                 return (
                   <section key={c.slug} id={c.slug} aria-labelledby={`${c.slug}-title`} className="scroll-mt-36">
-                    <div className="flex flex-col justify-between gap-4 border-b border-ink/10 pb-6 sm:flex-row sm:items-end">
+                    <div className="flex flex-col justify-between gap-3 border-b border-ink/10 pb-5 sm:flex-row sm:items-end sm:gap-4 sm:pb-6">
                       <div>
                         <h3 id={`${c.slug}-title`} data-split className="text-2xl font-black sm:text-3xl">
                           {c.name}
                         </h3>
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">{bidi(c.summary)}</p>
                       </div>
-                      <Link href={categoryPath(c)} prefetch={false} className="shrink-0 text-sm font-bold text-tape-deep hover:underline">
+                      <Link href={categoryPath(c)} prefetch={false} className="inline-flex min-h-10 shrink-0 items-center text-sm font-bold text-tape-deep hover:underline">
                         صفحه {c.name} ←
                       </Link>
                     </div>
                     {items.length > 0 ? (
-                      <div data-reveal-group className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                      <div data-reveal-group className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 lg:grid-cols-4">
                         {items.map((p) => (
                           <ProductCard key={p.slug} product={p} data-reveal-item />
                         ))}
@@ -81,10 +81,10 @@ export default function ProductsPage() {
                       <Link
                         href={categoryPath(c)}
                         prefetch={false}
-                        className="group mt-10 flex items-center gap-5 rounded-[1.6rem] border border-dashed border-ink/20 bg-card p-4 transition-[border-color,background-color] duration-300 ease-out hover:border-ink/45 hover:bg-white"
+                        className="group mt-8 flex items-center gap-4 rounded-[1.6rem] border border-dashed border-ink/20 bg-card p-3 transition-[border-color,background-color] duration-300 ease-out hover:border-ink/45 hover:bg-white sm:mt-10 sm:gap-5 sm:p-4"
                       >
                         {cover && (
-                          <span className="size-24 shrink-0 overflow-hidden rounded-2xl">
+                          <span className="size-20 shrink-0 overflow-hidden rounded-2xl sm:size-24">
                             <Picture image={cover.key} alt={cover.alt} sizes="96px" />
                           </span>
                         )}

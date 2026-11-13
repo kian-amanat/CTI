@@ -43,14 +43,9 @@
   --color-masking: var(--masking);
   --color-whatsapp: #1fa855;
 
-  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-rise: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(50%); }
-  }
   @keyframes float {
     0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
     50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
@@ -118,6 +113,8 @@
   h1, h2, h3, h4 {
     line-height: 1.35;
     text-wrap: balance;
+    /* a long Latin model name is kept in one piece by bidi(); on a very narrow phone it may break instead of widening the page */
+    overflow-wrap: break-word;
   }
   p {
     text-wrap: pretty;
@@ -125,6 +122,10 @@
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+  /* no grey flash on tap: links and buttons already change colour on hover/press */
+  a, button, summary {
+    -webkit-tap-highlight-color: transparent;
   }
   ::selection {
     background: var(--tape);
@@ -139,29 +140,6 @@
 @layer components {
   .container-x {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
-  }
-
-  /* Small piece of translucent masking tape stuck on a card corner: `.has-tape` on a position:relative parent draws
-     it with ::before (no extra element); `.tape-corner` is the same thing as a standalone element. */
-  .tape-corner,
-  .has-tape::before {
-    position: absolute;
-    inset-block-start: -10px;
-    inset-inline-start: 50%;
-    width: 84px;
-    height: 24px;
-    translate: 50% 0;
-    rotate: -4deg;
-    background: color-mix(in oklab, var(--masking) 72%, transparent);
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
-    mask: linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent 0) ,
-      repeating-linear-gradient(0deg, #000 0 3px, transparent 3px 5px);
-    mask-composite: add;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .has-tape::before {
-    content: "";
   }
 
   /* The arrow of the round card buttons (lucide arrow-up-left), as a mask so the chip needs no child elements */
@@ -271,23 +249,40 @@
   }
 }
 
-/* ---------- Parallax strips ----------
-   Decorative strips that drift while their section scrolls past. A scroll-driven CSS animation, so no JavaScript
-   and no main-thread work; a browser without support simply shows the strips still.
-   `.parallax-root` is the section whose passage drives it; `--parallax` is the travel in % of the strip's own
-   height (the sign is the direction). */
-@supports (animation-timeline: view()) {
-  .parallax-root {
-    view-timeline: --parallax block;
-  }
-  [data-parallax] {
-    animation: parallax-drift linear both;
-    animation-timeline: --parallax;
+/* ---------- Bars that stick under the header ----------
+   The header slides away while scrolling down (header-scroll-state.tsx). A bar that sticks below it (the group chips
+   of the products page) follows it up instead of leaving a gap of page content above itself. */
+.stick-under-header {
+  position: sticky;
+  top: 4rem;
+  transition: top 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (min-width: 1024px) {
+  .stick-under-header {
+    top: 4.5rem;
   }
 }
-@keyframes parallax-drift {
-  from { transform: translateY(calc(var(--parallax, 12) * -1%)); }
-  to { transform: translateY(calc(var(--parallax, 12) * 1%)); }
+html:has(#site-header[data-hidden="true"]) .stick-under-header {
+  top: 0;
+}
+
+/* ---------- Phone contact bar ----------
+   contact-bar-state.tsx hides it while a block with the same buttons (hero, "buy" box, closing call to action,
+   footer) is on screen, so the same two buttons are never shown twice at once. A page whose first screen already has
+   such a block (data-cta="top") keeps the bar out of sight from the first paint, instead of flashing it in and out. */
+.contact-bar {
+  transition: translate 0.4s var(--ease-calm), opacity 0.3s ease;
+}
+.contact-bar[data-hidden="true"] {
+  translate: 0 105%;
+  opacity: 0;
+  pointer-events: none;
+}
+/* a separate rule on purpose: a browser without :has() drops the whole rule it is in, and the one above must survive */
+body:has(main [data-cta="top"]) .contact-bar:not([data-ready]) {
+  translate: 0 105%;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------- Route transitions ----------
@@ -316,9 +311,5 @@
   ::view-transition-group(*) {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
-  }
-  /* a scroll-driven animation ignores durations, so it has to be switched off explicitly */
-  [data-parallax] {
-    animation: none;
   }
 }

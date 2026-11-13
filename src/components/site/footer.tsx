@@ -9,11 +9,12 @@ import { currentFaYear, mapLinks, whatsappHref } from "@/lib/format";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-ink pb-24 text-paper/80 lg:pb-0" aria-labelledby="footer-title">
+    // data-cta: the phone bottom bar steps aside while the footer (with the same numbers and links) is on screen
+    <footer data-cta className="relative overflow-hidden bg-ink pb-4 text-paper/80 lg:pb-0" aria-labelledby="footer-title">
       <h2 id="footer-title" className="sr-only">
         اطلاعات تماس و دسترسی سریع
       </h2>
-      <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
+      <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12 lg:gap-12 lg:py-20">
         <div className="lg:col-span-3">
           <Logo tone="light" />
           <p className="mt-6 max-w-sm text-sm leading-8">
@@ -31,7 +32,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="grid size-10 place-items-center rounded-full border border-paper/15 transition-[border-color,background-color,color] duration-300 ease-out hover:border-paper/45 hover:bg-paper/10 hover:text-paper"
+                  className="grid size-11 place-items-center rounded-full border border-paper/15 transition-[border-color,background-color,color] duration-300 ease-out hover:border-paper/45 hover:bg-paper/10 hover:text-paper"
                 >
                   <Icon className="size-[18px]" />
                 </a>
@@ -41,11 +42,12 @@ export function Footer() {
         </div>
 
         <nav aria-label="دسته‌بندی محصولات" className="lg:col-span-4">
-          <p className="mb-5 font-bold text-paper">گروه‌های محصول</p>
-          <ul className="grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+          <p className="mb-3 font-bold text-paper lg:mb-5">گروه‌های محصول</p>
+          {/* two columns even on phones; every row is a comfortable tap target (py-2 ≈ 40px) */}
+          <ul className="grid grid-cols-2 gap-x-4 text-sm lg:gap-x-6">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link href={`/categories/${c.slug}/`} prefetch={false} className="transition-colors duration-300 ease-out hover:text-paper">
+                <Link href={`/categories/${c.slug}/`} prefetch={false} className="block py-2 transition-colors duration-300 ease-out hover:text-paper lg:py-1.5">
                   {c.name}
                 </Link>
               </li>
@@ -54,11 +56,11 @@ export function Footer() {
         </nav>
 
         <nav aria-label="دسترسی سریع" className="lg:col-span-2">
-          <p className="mb-5 font-bold text-paper">دسترسی سریع</p>
-          <ul className="space-y-3 text-sm">
+          <p className="mb-3 font-bold text-paper lg:mb-5">دسترسی سریع</p>
+          <ul className="grid grid-cols-2 gap-x-4 text-sm lg:block">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-colors duration-300 ease-out hover:text-paper">
+                <Link href={l.href} className="block py-2 transition-colors duration-300 ease-out hover:text-paper lg:py-1.5">
                   {l.label}
                 </Link>
               </li>
@@ -67,8 +69,8 @@ export function Footer() {
         </nav>
 
         <div className="lg:col-span-3">
-          <p className="mb-5 font-bold text-paper">تماس و آدرس</p>
-          <address className="space-y-4 text-sm not-italic">
+          <p className="mb-3 font-bold text-paper lg:mb-5">تماس و آدرس</p>
+          <address className="space-y-3 text-sm not-italic lg:space-y-4">
             <p className="flex gap-3">
               <MapPinIcon className="mt-1 size-4 shrink-0 text-tape" />
               <a href={mapLinks.google} target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 ease-out hover:text-paper">
@@ -76,17 +78,17 @@ export function Footer() {
               </a>
             </p>
             <div className="flex gap-3">
-              <PhoneIcon className="mt-1 size-4 shrink-0 text-tape" />
-              <ul className="space-y-1">
+              <PhoneIcon className="mt-3.5 size-4 shrink-0 text-tape lg:mt-1" />
+              <ul className="lg:space-y-1">
                 {siteConfig.phones.map((p) => (
                   <li key={p.tel}>
-                    <a href={`tel:${p.tel}`} data-track="call" data-track-label="footer" className="transition-colors duration-300 ease-out hover:text-paper" dir="ltr">
+                    <a href={`tel:${p.tel}`} data-track="call" data-track-label="footer" className="block py-2.5 transition-colors duration-300 ease-out hover:text-paper lg:py-0" dir="ltr">
                       {p.display}
                     </a>
                   </li>
                 ))}
                 <li>
-                  <a href={`tel:${siteConfig.mobile.tel}`} data-track="call" data-track-label="footer-mobile" className="transition-colors duration-300 ease-out hover:text-paper" dir="ltr">
+                  <a href={`tel:${siteConfig.mobile.tel}`} data-track="call" data-track-label="footer-mobile" className="block py-2.5 transition-colors duration-300 ease-out hover:text-paper lg:py-0" dir="ltr">
                     {siteConfig.mobile.display}
                   </a>
                 </li>
@@ -94,7 +96,7 @@ export function Footer() {
             </div>
             <p className="flex gap-3">
               <MailIcon className="mt-1 size-4 shrink-0 text-tape" />
-              <a href={`mailto:${siteConfig.email}`} className="transition-colors duration-300 ease-out hover:text-paper" dir="ltr">
+              <a href={`mailto:${siteConfig.email}`} className="inline-block py-2 transition-colors duration-300 ease-out hover:text-paper lg:py-0" dir="ltr">
                 {siteConfig.email}
               </a>
             </p>

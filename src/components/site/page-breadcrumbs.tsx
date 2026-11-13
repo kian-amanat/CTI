@@ -28,7 +28,10 @@ export function PageBreadcrumbs({ items }: { items: Crumb[] }) {
                   <BreadcrumbPage className="font-medium">{bidi(item.name)}</BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink asChild>
-                    <Link href={item.path}>{bidi(item.name)}</Link>
+                    {/* py-2 -my-2: a 36px tall tap area that takes no extra room in the page */}
+                    <Link href={item.path} className="inline-block py-2 -my-2">
+                      {bidi(item.name)}
+                    </Link>
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>

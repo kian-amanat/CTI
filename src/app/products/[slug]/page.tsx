@@ -60,10 +60,10 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           ]}
         />
 
-        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-8 grid grid-cols-1 gap-10 sm:mt-10 sm:gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
-            <figure className="has-tape relative rounded-[2rem] border border-ink/8 bg-card p-3">
-              <div className="aspect-square overflow-hidden rounded-[1.5rem]">
+            <figure className="rounded-[1.6rem] border border-ink/8 bg-card p-2.5 sm:rounded-[2rem] sm:p-3">
+              <div className="aspect-square overflow-hidden rounded-[1.2rem] sm:rounded-[1.5rem]">
                 <Picture image={product.image} alt={product.imageAlt} sizes="(min-width: 1024px) 40vw, calc(100vw - 3.5rem)" priority plate />
               </div>
               <figcaption className="sr-only">{product.imageAlt}</figcaption>
@@ -83,11 +83,11 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
             <Link
               href={categoryPath(category)}
               prefetch={false}
-              className="inline-flex rounded-full bg-paper-deep px-3 py-1 text-sm font-bold transition-colors duration-300 ease-out hover:bg-ink/10"
+              className="inline-flex min-h-9 items-center rounded-full bg-paper-deep px-3.5 text-sm font-bold transition-colors duration-300 ease-out hover:bg-ink/10"
             >
               {category.name}
             </Link>
-            <h1 className="mt-5 text-3xl font-black sm:text-4xl lg:text-[2.5rem] lg:leading-[1.4]">{bidi(product.name)}</h1>
+            <h1 className="mt-5 text-[1.7rem] leading-[1.45] font-black sm:text-4xl lg:text-[2.5rem] lg:leading-[1.4]">{bidi(product.name)}</h1>
             <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted-foreground">
               {product.brand && (
                 <span>
@@ -100,9 +100,9 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
                 </span>
               )}
             </p>
-            <p className="mt-8 text-lg leading-9">{bidi(product.summary)}</p>
+            <p className="mt-6 leading-8 sm:mt-8 sm:text-lg sm:leading-9">{bidi(product.summary)}</p>
 
-            <dl className="mt-10 grid grid-cols-2 gap-3">
+            <dl className="mt-8 grid grid-cols-2 gap-3 sm:mt-10">
               {product.highlights.map((s) => (
                 <div key={s.label} className="flex flex-col rounded-2xl border border-ink/8 bg-card p-4">
                   <dt className="text-xs text-muted-foreground">{s.label}</dt>
@@ -111,8 +111,8 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
               ))}
             </dl>
 
-            <aside aria-labelledby="buy-title" className="relative mt-10 overflow-hidden rounded-[1.8rem] bg-ink p-7 text-paper sm:p-9">
-              <div className="absolute -top-8 -left-10 h-10 w-48 -rotate-12 bg-masking/80" aria-hidden="true" />
+            {/* data-cta: the phone bottom bar steps aside while these buttons are on screen */}
+            <aside aria-labelledby="buy-title" data-cta className="mt-8 rounded-[1.6rem] bg-ink p-6 text-paper sm:mt-10 sm:rounded-[1.8rem] sm:p-9">
               <h2 id="buy-title" className="text-xl font-black">
                 قیمت و خرید
               </h2>
@@ -129,13 +129,13 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
         </div>
 
         {/* min-w-0 + an explicit single column: wide catalog tables must scroll inside their box, never stretch the page on phones */}
-        <div className="mt-28 grid grid-cols-1 gap-16 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-20">
-          <div className="min-w-0 space-y-24">
+        <div className="mt-20 grid grid-cols-1 gap-14 sm:mt-28 sm:gap-16 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-20">
+          <div className="min-w-0 space-y-16 sm:space-y-24">
             <section aria-labelledby="about-title">
               <h2 id="about-title" data-split className="text-2xl font-black sm:text-3xl">
                 معرفی {bidi(product.shortName)}
               </h2>
-              <div className="mt-7 space-y-5 text-[1.05rem] leading-9 text-ink/85">
+              <div className="mt-6 space-y-5 leading-8 text-ink/85 sm:mt-7 sm:text-[1.05rem] sm:leading-9">
                 {product.description.map((d) => (
                   <p key={d.slice(0, 24)}>{bidi(d)}</p>
                 ))}
@@ -183,7 +183,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
                   <ul className="mt-6 space-y-3.5">
                     {product.applications.map((a) => (
                       <li key={a} className="flex items-center gap-3">
-                        <span className="h-2 w-5 shrink-0 -rotate-12 rounded-[2px] bg-masking" aria-hidden="true" />
+                        <span className="size-2 shrink-0 rounded-full bg-tape" aria-hidden="true" />
                         {bidi(a)}
                       </li>
                     ))}
@@ -198,7 +198,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           </aside>
         </div>
 
-        <section aria-labelledby="pfaq-title" className="mt-32">
+        <section aria-labelledby="pfaq-title" className="mt-20 sm:mt-32">
           <h2 id="pfaq-title" className="mb-9 text-2xl font-black sm:text-3xl">
             سؤالات متداول درباره {bidi(category.name)}
           </h2>
@@ -207,16 +207,16 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
         </section>
 
         {related.length > 0 && (
-          <section aria-labelledby="related-title" className="mt-32 pb-28">
+          <section aria-labelledby="related-title" className="mt-20 pb-20 sm:mt-32 sm:pb-28">
             <div className="flex items-end justify-between gap-4">
               <h2 id="related-title" data-split className="text-2xl font-black sm:text-3xl">
                 محصولات مرتبط
               </h2>
-              <Link href={categoryPath(category)} prefetch={false} className="text-sm font-bold text-tape-deep hover:underline">
+              <Link href={categoryPath(category)} prefetch={false} className="inline-flex min-h-10 items-center text-sm font-bold text-tape-deep hover:underline">
                 همه محصولات {category.name} ←
               </Link>
             </div>
-            <div data-reveal-group className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div data-reveal-group className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 lg:grid-cols-4">
               {related.map((p) => (
                 <ProductCard key={p.slug} product={p} data-reveal-item />
               ))}
