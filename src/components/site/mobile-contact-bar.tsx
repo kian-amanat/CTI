@@ -37,7 +37,7 @@ export function MobileContactBar() {
         data-track="whatsapp"
         data-track-label="floating"
         aria-label="گفتگو در واتساپ"
-        className="fixed bottom-6 left-6 z-40 hidden size-14 place-items-center rounded-full bg-whatsapp text-white shadow-[0_12px_30px_-8px_rgb(31_168_85/0.7)] transition-transform hover:scale-110 lg:grid"
+        className="fixed bottom-6 left-6 z-40 hidden size-14 place-items-center rounded-full bg-whatsapp text-white shadow-[0_12px_30px_-8px_rgb(31_168_85/0.7)] transition-colors duration-300 ease-out hover:bg-[#188a49] lg:grid"
       >
         <WhatsAppIcon className="size-7" />
         <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-whatsapp/40 [animation-duration:2.5s]" />

@@ -19,12 +19,12 @@ export function DeveloperCredit() {
     <Popover>
       <span className="inline-flex items-center gap-1.5">
         طراحی و توسعه:
-        <PopoverTrigger className="group inline-flex items-center gap-1.5 rounded-full border border-paper/15 bg-paper/5 py-1 ps-1 pe-3 font-bold text-paper transition-colors hover:border-tape hover:bg-tape/15">
+        <PopoverTrigger className="group inline-flex items-center gap-1.5 rounded-full border border-paper/15 bg-paper/5 py-1 ps-1 pe-3 font-bold text-paper transition-colors duration-300 ease-out hover:border-paper/40 hover:bg-paper/10">
           <span className="grid size-6 place-items-center rounded-full bg-tape-deep text-[0.7rem] font-black text-white" dir="ltr">
             {initials}
           </span>
           {developer.name}
-          <SparklesIcon className="size-3.5 text-masking transition-transform group-hover:rotate-45" />
+          <SparklesIcon className="size-3.5 text-masking" />
         </PopoverTrigger>
       </span>
       <PopoverContent side="top" align="start" sideOffset={10} collisionPadding={16} className="w-80 rounded-2xl border-ink/10 bg-card p-0 text-ink">

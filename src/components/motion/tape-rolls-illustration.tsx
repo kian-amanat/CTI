@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cx } from "@/lib/cx";
 
 type Roll = {
   cx: number;
@@ -26,7 +26,7 @@ const rolls: Roll[] = [
  */
 export function TapeRollsIllustration({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 500 500" className={cn("h-full w-full", className)} aria-hidden="true">
+    <svg viewBox="0 0 500 500" className={cx("h-full w-full", className)} aria-hidden="true">
       <defs>
         <radialGradient id="glow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#e5462b" stopOpacity="0.45" />

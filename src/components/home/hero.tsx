@@ -42,21 +42,19 @@ export function Hero() {
                 <Words text="و نوار چسب صنعتی" start={2} />
               </span>{" "}
               <span className="mt-5 block text-lg font-bold text-paper/75 sm:text-2xl">
-                {/* NBSP keeps "QUICK TAPE" in one animated span so the Latin words don't swap order in RTL */}
-                <Words text={"تولید و واردات؛ NANO و QUICK TAPE"} start={6} />
+                <Words text={siteConfig.tagline} start={6} />
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl leading-8 text-paper/65">
-              از چسب دوطرفه سلولزی، شیشه‌ای، فوم و ژله‌ای تا نوار چسب‌های آلومینیومی، برزنتی، کنفی و بسته‌بندی؛ با ابعاد و تعداد در
-              کارتن مشخص برای هر محصول. قیمت روز را تلفنی بپرسید.
+              از چسب دوطرفه سلولزی، شیشه‌ای، فوم و ژله‌ای تا نوار چسب‌های آلومینیومی، برزنتی، کنفی و بسته‌بندی؛ از برندهای tesa،
+              NANO، 3M و Lohmann، با ابعاد مشخص برای هر محصول. قیمت روز را تلفنی بپرسید.
             </p>
 
             <div className="hero-fade mt-9 flex flex-wrap gap-3" style={{ ["--i" as string]: 12 }}>
               <Link
                 href="/products/"
-                data-magnetic
-                className={cn(buttonVariants(), "h-14 gap-3 rounded-full bg-paper px-7 text-base font-bold text-ink hover:bg-masking")}
+                className={cn(buttonVariants(), "h-14 gap-3 rounded-full bg-paper px-7 text-base font-bold text-ink hover:bg-paper/85")}
               >
                 مشاهده کاتالوگ محصولات
                 <ArrowLeftIcon className="size-5" />

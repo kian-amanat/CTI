@@ -23,8 +23,11 @@ export type Product = {
   name: string;
   /** Short name for breadcrumbs */
   shortName: string;
+  /** Shorter <title> for search results when the full name is too long (the H1 keeps the full name) */
+  seoTitle?: string;
   category: string;
-  brand: string;
+  /** Omitted for products that carry many brands (e.g. printed packaging tape) */
+  brand?: string;
   model?: string;
   /** ~150 characters, used as meta description and card text */
   summary: string;
@@ -217,7 +220,8 @@ export const products: Product[] = [
     ],
     keywords: ["فوم چسبدار دو طرفه", "چسب دوطرفه فوم NANO", "چسب فوم دوطرفه", "چسب دوطرفه سفید و مشکی"],
     image: "products/nano-double-sided-foam-tape",
-    imageAlt: "رول‌های چسب دوطرفه فوم NANO",
+    imageAlt: "دو رول باریک چسب دوطرفه سفید NANO",
+    gallery: [{ image: "gallery/nano-foam-catalog-photo", alt: "رول‌های چسب دوطرفه فوم NANO در تصویر کاتالوگ" }],
     featured: true,
   },
   {
@@ -453,6 +457,82 @@ export const products: Product[] = [
 
   /* ───────────── چسب دوطرفه روکش قرمز ───────────── */
   {
+    slug: "tesa-red-liner-double-sided-tape",
+    name: "چسب دوطرفه روکش قرمز tesa (رول باریک)",
+    shortName: "روکش قرمز tesa",
+    category: "red-liner-double-sided-tape",
+    brand: "tesa",
+    summary:
+      "رول‌های باریک چسب دوطرفه با لاینر قرمز از برند tesa؛ نام tesa روی هسته رول چاپ شده است. مدل، عرض و طول رول را تلفنی بپرسید.",
+    description: [
+      "در تصویر، دو رول باریک چسب دوطرفه با لاینر قرمز دیده می‌شود. روی هسته کاغذی رول‌ها نام tesa چاپ شده است.",
+      "این چسب در گروه «چسب دوطرفه روکش قرمز» قرار دارد. برای شماره مدل، عرض و طول رول، مشخصات فنی و قیمت روز با کارشناسان تماس بگیرید؛ چسب‌های مشابه PET مدل 6665 (Qbono) و NANO 4965 را هم در همین گروه ببینید.",
+    ],
+    features: ["لاینر قرمز", "نام tesa روی هسته رول", "رول باریک", "چسب دوطرفه"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "نوع", value: "چسب دوطرفه" },
+      { label: "لاینر", value: "قرمز" },
+      { label: "شکل عرضه", value: "رول باریک" },
+    ],
+    chips: ["tesa", "لاینر قرمز"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["نوع", "چسب دوطرفه"],
+          ["رنگ لاینر", "قرمز"],
+          ["شکل عرضه", "رول باریک"],
+        ],
+        note: "مدل، عرض، طول رول و مشخصات فنی را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب دوطرفه روکش قرمز", "چسب دوطرفه tesa", "چسب دوطرفه لاینر قرمز"],
+    image: "products/tesa-red-liner-double-sided-tape",
+    imageAlt: "دو رول چسب دوطرفه با لاینر قرمز tesa",
+    featured: true,
+  },
+  {
+    slug: "tesa-4965-double-sided-tape",
+    name: "چسب دوطرفه tesa مدل 4965 (رول عریض)",
+    shortName: "tesa 4965",
+    category: "red-liner-double-sided-tape",
+    brand: "tesa",
+    model: "4965",
+    summary:
+      "رول عریض چسب دوطرفه tesa مدل 4965؛ نام tesa و شماره 4965 روی هسته رول چاپ شده است. عرض، طول رول و قیمت روز را تلفنی بپرسید.",
+    description: [
+      "در تصویر یک رول عریض چسب دوطرفه tesa دیده می‌شود؛ روی هسته رول نام tesa و شماره مدل 4965 چاپ شده و لبه چسب به رنگ قهوه‌ای روشن است.",
+      "چسب‌های NANO 4965 و Qbono 6665 (PET با لاینر قرمز) هم در همین گروه معرفی شده‌اند. عرض و طول این رول، ضخامت و مشخصات فنی را هنگام تماس بپرسید.",
+    ],
+    features: ["نام tesa و شماره مدل 4965 روی هسته رول", "رول عریض", "چسب دوطرفه"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "مدل", value: "4965" },
+      { label: "نوع", value: "چسب دوطرفه" },
+      { label: "شکل عرضه", value: "رول عریض" },
+    ],
+    chips: ["tesa 4965", "رول عریض"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["مدل (چاپ‌شده روی هسته)", "4965"],
+          ["نوع", "چسب دوطرفه"],
+          ["شکل عرضه", "رول عریض"],
+        ],
+        note: "عرض، طول رول، ضخامت و مشخصات فنی را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب دوطرفه tesa 4965", "tesa 4965", "چسب دوطرفه شفاف tesa", "چسب دوطرفه روکش قرمز"],
+    image: "products/tesa-4965-double-sided-tape",
+    imageAlt: "رول عریض چسب دوطرفه tesa 4965",
+  },
+  {
     slug: "qbono-6665-pet-red-double-sided-tape",
     name: "چسب دوطرفه پلی‌استر (PET) روکش قرمز مدل 6665 Qbono",
     shortName: "PET قرمز 6665",
@@ -614,6 +694,46 @@ export const products: Product[] = [
     imageAlt: "رول چسب دوطرفه شبکه‌ای با توری الیاف شیشه",
   },
 
+  /* ───────────── چسب دوطرفه کلیشه ───────────── */
+  {
+    slug: "tesa-plate-mounting-cliche-tape",
+    name: "چسب دوطرفه کلیشه tesa (Plate Mounting Tape)",
+    shortName: "کلیشه tesa",
+    category: "cliche-flexo-double-sided-tape",
+    brand: "tesa",
+    summary:
+      "چسب دوطرفه نصب کلیشه tesa (plate mounting tape) برای نصب کلیشه چاپ؛ عنوان نوار نصب کلیشه به چند زبان روی جعبه چاپ شده است. مدل، ضخامت و عرض را تلفنی بپرسید.",
+    description: [
+      "چسب دوطرفه کلیشه tesa در جعبه‌ای عرضه می‌شود که عنوان plate mounting tape (نوار نصب کلیشه) به چند زبان از جمله انگلیسی، آلمانی، فرانسوی، اسپانیایی و روسی روی آن چاپ شده است. کنار جعبه، دو رول کوچک کرم‌رنگ در کیسه شفاف دیده می‌شود.",
+      "چنین چسب‌هایی برای نصب کلیشه روی سیلندر ماشین چاپ فلکسو به کار می‌روند. نوع و ضخامت مناسب به دستگاه و کلیشه شما بستگی دارد؛ مدل‌ها و ابعاد موجود را از کارشناسان بپرسید.",
+    ],
+    features: ["برند tesa", "عنوان plate mounting tape روی جعبه", "مخصوص نصب کلیشه چاپ", "عرضه در جعبه"],
+    applications: ["نصب کلیشه روی سیلندر ماشین چاپ فلکسو"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "نوع", value: "چسب دوطرفه کلیشه" },
+      { label: "عنوان روی جعبه", value: "Plate mounting tape" },
+      { label: "شکل عرضه", value: "جعبه / رول" },
+    ],
+    chips: ["tesa", "نصب کلیشه"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["عنوان روی جعبه", "Plate mounting tape"],
+          ["کاربرد", "نصب کلیشه چاپ"],
+          ["شکل عرضه", "جعبه / رول"],
+        ],
+        note: "مدل، ضخامت، عرض و طول رول را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب دوطرفه کلیشه", "چسب دوطرفه کلیشه tesa", "tesa plate mounting tape", "چسب نصب کلیشه"],
+    image: "products/tesa-plate-mounting-cliche-tape",
+    imageAlt: "جعبه tesa plate mounting tape و دو رول چسب کلیشه",
+  },
+
   /* ───────────── آلومینیوم چسبدار ───────────── */
   {
     slug: "nano-aluminum-foil-tape-50-micron",
@@ -724,6 +844,48 @@ export const products: Product[] = [
     imageAlt: "رول‌های چسب برزنتی نقره‌ای و مشکی QUICK TAPE",
   },
   {
+    slug: "tesa-professional-strong-duct-tape",
+    name: "چسب برزنتی tesa Professional (Strong Duct Tape) ۴۸ میلی‌متر × ۵۰ متر",
+    seoTitle: "چسب برزنتی tesa Professional؛ ۴۸ میلی‌متر × ۵۰ متر",
+    shortName: "برزنتی tesa Professional",
+    category: "cloth-duct-tape",
+    brand: "tesa",
+    summary:
+      "چسب برزنتی tesa Professional با عنوان Strong Duct Tape؛ طبق برچسب رول، ۴۸ میلی‌متر در ۵۰ متر، ضخامت ۰٫۲۳ میلی‌متر و رده Mid Grade.",
+    description: [
+      "روی برچسب رول، عنوان tesa PROFESSIONAL Strong Duct Tape و ابعاد 50 m × 48 mm چاپ شده است. برچسب این محصول را Duct Tape (چسب برزنتی) از رده Mid Grade معرفی می‌کند و ضخامت 0.23 mm و عدد 27 mesh را نشان می‌دهد.",
+      "برای مقایسه با چسب برزنتی QUICK TAPE و دیدن رنگ‌های دیگر، صفحه چسب برزنتی را ببینید. رنگ‌ها و مدل‌های موجود tesa را از کارشناسان بپرسید.",
+    ],
+    features: ["برند tesa Professional", "رول ۴۸ میلی‌متر × ۵۰ متر", "ضخامت ۰٫۲۳ میلی‌متر (طبق برچسب)", "رده Mid Grade (طبق برچسب)"],
+    applications: ["پوشش‌دهی منافذ", "بسته‌بندی‌های سنگین"],
+    highlights: [
+      { label: "برند", value: "tesa Professional" },
+      { label: "عرض", value: "۴۸ میلی‌متر" },
+      { label: "طول رول", value: "۵۰ متر" },
+      { label: "ضخامت", value: "۰٫۲۳ میلی‌متر" },
+    ],
+    chips: ["tesa Professional", "۴۸ میلی‌متر × ۵۰ متر"],
+    tables: [
+      {
+        title: "مقادیر خوانده‌شده از برچسب رول",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند و عنوان", "tesa PROFESSIONAL Strong Duct Tape"],
+          ["رده (برچسب)", "Duct Tape - Mid Grade"],
+          ["عرض", "48 mm"],
+          ["طول", "50 m"],
+          ["ضخامت (آیکون برچسب)", "0.23 mm"],
+          ["عدد روی آیکون پارچه", "27 mesh"],
+        ],
+        note: "این مقادیر از برچسب رول در عکس خوانده شده است. رنگ‌ها و مشخصات فنی کامل را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب برزنتی tesa", "tesa strong duct tape", "چسب برزنتی tesa professional", "چسب برزنتی ۵۰ متری"],
+    image: "products/tesa-professional-strong-duct-tape",
+    imageAlt: "رول‌های چسب برزنتی tesa Professional Strong Duct Tape",
+    featured: true,
+  },
+  {
     slug: "quick-tape-cross-weave-filament-tape",
     name: "چسب کنفی تار و پودی QUICK TAPE ۴۸ میلی‌متر",
     shortName: "کنفی تار و پودی",
@@ -830,6 +992,7 @@ export const products: Product[] = [
   {
     slug: "qbono-pvc-electrical-tape",
     name: "چسب برق پی‌وی‌سی (Electrical PVC Tape) Qbono مدل‌های 6120، 6125 و 6140",
+    seoTitle: "چسب برق پی‌وی‌سی Qbono؛ مدل‌های 6120، 6125 و 6140",
     shortName: "چسب برق PVC",
     category: "pvc-electrical-tape",
     brand: "Qbono",
@@ -910,7 +1073,46 @@ export const products: Product[] = [
     ],
     keywords: ["چسب کاغذی", "چسب ماسکینگ", "چسب کاغذی QUICK TAPE", "چسب نقاشی"],
     image: "products/quick-tape-masking-tape",
-    imageAlt: "رول‌های چسب کاغذی QUICK TAPE",
+    imageAlt: "دو رول چسب کاغذی کرم‌رنگ QUICK TAPE",
+    gallery: [{ image: "gallery/quick-tape-masking-catalog-photo", alt: "رول‌های چسب کاغذی QUICK TAPE در تصویر کاتالوگ" }],
+  },
+  {
+    slug: "tesa-masking-tape",
+    name: "چسب کاغذی tesa (آبی-سبز) رول باریک",
+    shortName: "چسب کاغذی tesa",
+    category: "masking-tape",
+    brand: "tesa",
+    summary:
+      "نوار چسب کاغذی (ماسکینگ) tesa به رنگ آبی-سبز در رول‌های باریک؛ نام tesa روی هسته رول چاپ شده است. مدل و ابعاد را تلفنی بپرسید.",
+    description: [
+      "چسب کاغذی tesa به رنگ آبی-سبز در رول‌های باریک عرضه می‌شود؛ روی هسته کاغذی رول، نام tesa چاپ شده است. در تصویر اصلی این چسب کنار چسب کاغذی کرم‌رنگ QUICK TAPE دیده می‌شود.",
+      "مدل دقیق، عرض و طول رول را از کارشناسان بپرسید. برای چسب کاغذی QUICK TAPE و ابعاد کاتالوگی آن، صفحه چسب کاغذی را ببینید.",
+    ],
+    features: ["چسب کاغذی (ماسکینگ)", "رنگ آبی-سبز", "نام tesa روی هسته رول", "رول باریک"],
+    applications: ["ماسک کردن خطوط رنگ"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "نوع", value: "چسب کاغذی (ماسکینگ)" },
+      { label: "رنگ", value: "آبی-سبز" },
+      { label: "شکل عرضه", value: "رول باریک" },
+    ],
+    chips: ["tesa", "آبی-سبز"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["نوع", "چسب کاغذی (ماسکینگ)"],
+          ["رنگ", "آبی-سبز"],
+          ["شکل عرضه", "رول باریک"],
+        ],
+        note: "مدل، عرض، طول رول و مشخصات فنی را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب کاغذی tesa", "چسب ماسکینگ tesa", "چسب کاغذی"],
+    image: "products/tesa-masking-tape",
+    imageAlt: "دو رول چسب کاغذی آبی-سبز tesa",
   },
   {
     slug: "knauf-joint-tape",
@@ -937,6 +1139,239 @@ export const products: Product[] = [
     keywords: ["چسب کناف", "نوار درزگیر کناف", "چسب درز کناف", "Joint Tape کناف"],
     image: "products/knauf-joint-tape",
     imageAlt: "رول‌های چسب کناف Joint Tape",
+  },
+
+  /* ───────────── چسب گلخانه‌ای ───────────── */
+  {
+    slug: "nitto-greenhouse-film-tape",
+    name: "چسب گلخانه‌ای NITTO (رول عریض نوار فیلم سفید)",
+    shortName: "گلخانه‌ای NITTO",
+    category: "greenhouse-tape",
+    brand: "NITTO",
+    summary:
+      "رول‌های عریض نوار چسب فیلم سفید با عبارت NITTO TAPE روی هسته؛ از محصولات چسب گلخانه‌ای. عرض، طول رول و قیمت روز را تلفنی بپرسید.",
+    description: [
+      "در تصویر دو رول عریض نوار چسب فیلم سفید و نیمه‌شفاف دیده می‌شود؛ روی هسته رول عبارت NITTO TAPE چاپ شده است.",
+      "چسب گلخانه‌ای برای اتصال و ترمیم پوشش‌های پلاستیکی گلخانه به کار می‌رود. عرض و طول رول و مشخصات فنی را از کارشناسان بپرسید.",
+    ],
+    features: ["برند NITTO", "نوار فیلم سفید و نیمه‌شفاف", "رول عریض", "مخصوص پوشش‌های پلاستیکی گلخانه"],
+    applications: ["اتصال پوشش گلخانه", "ترمیم پوشش نایلونی گلخانه"],
+    highlights: [
+      { label: "برند", value: "NITTO" },
+      { label: "نوع", value: "نوار فیلم سفید" },
+      { label: "شکل عرضه", value: "رول عریض" },
+      { label: "کاربرد", value: "گلخانه" },
+    ],
+    chips: ["NITTO", "نوار فیلم سفید"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "NITTO"],
+          ["عبارت روی هسته", "NITTO TAPE"],
+          ["رنگ نوار", "سفید / نیمه‌شفاف"],
+          ["شکل عرضه", "رول عریض"],
+        ],
+        note: "مدل، عرض، طول رول و مشخصات فنی را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب گلخانه", "چسب گلخانه ای", "چسب گلخانه NITTO", "چسب نایلون گلخانه"],
+    image: "products/nitto-greenhouse-film-tape",
+    imageAlt: "دو رول عریض نوار چسب فیلم سفید NITTO",
+  },
+
+  /* ───────────── چسب پارچه‌ای حرارتی ───────────── */
+  {
+    slug: "tesa-black-cloth-tape",
+    name: "چسب پارچه‌ای مشکی tesa (رول باریک)",
+    shortName: "پارچه‌ای مشکی tesa",
+    category: "heat-resistant-cloth-tape",
+    brand: "tesa",
+    summary:
+      "نوار چسب پارچه‌ای (نمدی) مشکی tesa در رول‌های باریک با هسته کاغذی و فلزی؛ نمونه چسب پارچه‌ای برای دسته‌سیم و کارهای مشابه. مدل و دمای کاری را تلفنی بپرسید.",
+    description: [
+      "تصویر چهار رول چسب پارچه‌ای مشکی را نشان می‌دهد؛ دو رول با هسته کاغذی که نام tesa روی آن چاپ شده و دو رول با هسته فلزی. سطح رول‌ها پارچه‌ای (نمدی) و مشکی است.",
+      "از کاربردهای رایج چنین نوارهایی بستن و محافظت دسته‌سیم‌هاست. مدل دقیق، ضخامت، عرض و حداکثر دمای کاری را از کارشناسان بپرسید.",
+    ],
+    features: ["برند tesa", "سطح پارچه‌ای (نمدی) مشکی", "رول باریک", "هسته کاغذی و فلزی"],
+    applications: ["بستن و محافظت دسته‌سیم"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "رنگ", value: "مشکی" },
+      { label: "سطح", value: "پارچه‌ای (نمدی)" },
+      { label: "هسته", value: "کاغذی و فلزی" },
+    ],
+    chips: ["tesa", "پارچه‌ای مشکی"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["رنگ", "مشکی"],
+          ["سطح نوار", "پارچه‌ای (نمدی)"],
+          ["هسته رول", "کاغذی (چاپ tesa) و فلزی"],
+        ],
+        note: "مدل، ضخامت، عرض، طول و حداکثر دمای کاری را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب پارچه ای حرارتی", "چسب پارچه ای مشکی", "چسب پارچه ای tesa", "چسب نمدی"],
+    image: "products/tesa-black-cloth-tape",
+    imageAlt: "چهار رول چسب پارچه‌ای مشکی tesa با هسته کاغذی و فلزی",
+  },
+
+  /* ───────────── چسب مارکدار ───────────── */
+  {
+    slug: "printed-packaging-tape",
+    name: "چسب بسته‌بندی چاپی (مارکدار) در رنگ‌ها و طرح‌های مختلف",
+    shortName: "بسته‌بندی چاپی",
+    category: "branded-tapes",
+    summary:
+      "چسب بسته‌بندی چاپی (مارکدار) که نام، لوگو یا پیام روی نوار آن چاپ شده؛ در تصویر انبوهی از رول‌های چاپی در رنگ‌ها و طرح‌های مختلف دیده می‌شود. طرح‌ها و ابعاد موجود را تلفنی بپرسید.",
+    description: [
+      "چسب بسته‌بندی چاپی نواری است که نام برند، لوگو یا پیام روی آن چاپ شده است. در تصویر، رول‌هایی با طرح‌ها و رنگ‌های مختلف (سفید، نارنجی، مشکی، قرمز، بنفش) روی هم چیده شده‌اند.",
+      "طرح‌ها، رنگ‌ها و ابعاد موجود تغییر می‌کند؛ برای دیدن طرح‌های موجود و قیمت روز با کارشناسان تماس بگیرید. چسب بسته‌بندی ساده را در صفحه چسب بسته‌بندی ببینید.",
+    ],
+    features: ["نام و لوگو روی نوار", "رنگ‌ها و طرح‌های متنوع", "رول", "مخصوص بسته‌بندی"],
+    applications: ["بسته‌بندی کارتن و مرسوله", "معرفی برند روی بسته"],
+    highlights: [
+      { label: "نوع", value: "چسب بسته‌بندی چاپی" },
+      { label: "چاپ", value: "نام، لوگو یا پیام" },
+      { label: "رنگ‌ها", value: "سفید، نارنجی، مشکی، قرمز، بنفش و..." },
+      { label: "شکل عرضه", value: "رول" },
+    ],
+    chips: ["چاپی (مارکدار)", "رنگ‌ها و طرح‌های متنوع"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["نوع", "چسب بسته‌بندی چاپی"],
+          ["چاپ روی نوار", "نام، لوگو یا پیام"],
+          ["رنگ‌های دیده‌شده در تصویر", "سفید، نارنجی، مشکی، قرمز، بنفش و..."],
+          ["شکل عرضه", "رول"],
+        ],
+        note: "عرض، طول رول، طرح‌های موجود و قیمت روز را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["چسب مارکدار", "چسب بسته بندی چاپی", "چسب لوگودار", "چسب پهن چاپی"],
+    image: "products/printed-packaging-tape",
+    imageAlt: "رول‌های چسب بسته‌بندی چاپی با طرح‌ها و رنگ‌های مختلف",
+    featured: true,
+  },
+  {
+    slug: "scotch-3m-permanent-clear-mounting-tape",
+    name: "چسب دوطرفه شفاف Scotch (3M) مدل Permanent Clear Mounting",
+    shortName: "Scotch Clear Mounting",
+    category: "branded-tapes",
+    brand: "Scotch (3M)",
+    summary:
+      "چسب دوطرفه Scotch (3M) Permanent Clear Mounting در بسته‌بندی خرده‌فروشی؛ رول ۲۵٫۴ میلی‌متر در ۱٫۵۱ متر با تحمل وزن تا ۲ پوند (حدود ۰٫۹ کیلوگرم) طبق چاپ روی بسته.",
+    description: [
+      "روی بسته نوشته شده است: Scotch Permanent Clear Mounting، Holds up to 2 lbs و ROLL 1 IN × 60 IN (1.66 YD) 25.4 mm × 1.51 m؛ نشان 3M هم روی بسته دیده می‌شود.",
+      "این محصول به‌صورت بسته تکی (۱ رول) عرضه می‌شود. موجودی و قیمت روز را تلفنی بپرسید.",
+    ],
+    features: ["برند Scotch (3M)", "رول ۲۵٫۴ میلی‌متر × ۱٫۵۱ متر", "تحمل وزن تا ۲ پوند (طبق بسته)", "بسته تکی"],
+    applications: ["نصب اشیای سبک (طبق چاپ روی بسته)"],
+    highlights: [
+      { label: "برند", value: "Scotch (3M)" },
+      { label: "عرض", value: "۲۵٫۴ میلی‌متر (۱ اینچ)" },
+      { label: "طول رول", value: "۱٫۵۱ متر (۶۰ اینچ)" },
+      { label: "تحمل وزن", value: "تا ۲ پوند (حدود ۰٫۹ کیلوگرم)" },
+    ],
+    chips: ["Scotch (3M)", "۲۵٫۴ میلی‌متر × ۱٫۵۱ متر"],
+    tables: [
+      {
+        title: "مقادیر چاپ‌شده روی بسته",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "Scotch (3M)"],
+          ["عنوان روی بسته", "Permanent Clear Mounting"],
+          ["ابعاد رول", "1 in × 60 in (25.4 mm × 1.51 m)"],
+          ["تعداد در بسته", "1 رول"],
+          ["تحمل وزن (چاپ روی بسته)", "Holds up to 2 lbs"],
+        ],
+        note: "مقادیر از چاپ روی بسته در عکس خوانده شده است.",
+      },
+    ],
+    keywords: ["چسب دوطرفه Scotch", "چسب دوطرفه 3M", "چسب دوطرفه شفاف", "Scotch Permanent Clear Mounting"],
+    image: "products/scotch-3m-permanent-clear-mounting-tape",
+    imageAlt: "بسته چسب دوطرفه Scotch Permanent Clear Mounting",
+  },
+  {
+    slug: "tesa-orange-tape",
+    name: "نوار چسب نارنجی tesa (رول عریض)",
+    shortName: "نارنجی tesa",
+    category: "branded-tapes",
+    brand: "tesa",
+    summary:
+      "رول‌های عریض نوار چسب نارنجی tesa؛ روی هسته رول نام tesa و عبارت Made in EU چاپ شده است. مدل، عرض و طول رول را تلفنی بپرسید.",
+    description: [
+      "در تصویر دو رول عریض نوار چسب نارنجی دیده می‌شود. روی هسته رول‌ها نام tesa و عبارت Made in EU چاپ شده است.",
+      "مدل دقیق، عرض، طول رول و کاربرد این نوار را از کارشناسان بپرسید.",
+    ],
+    features: ["برند tesa", "رنگ نارنجی", "رول عریض", "عبارت Made in EU روی هسته"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "رنگ", value: "نارنجی" },
+      { label: "شکل عرضه", value: "رول عریض" },
+      { label: "عبارت روی هسته", value: "Made in EU" },
+    ],
+    chips: ["tesa", "نارنجی"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["رنگ", "نارنجی"],
+          ["شکل عرضه", "رول عریض"],
+          ["عبارت روی هسته", "tesa - Made in EU"],
+        ],
+        note: "مدل، عرض، طول رول و مشخصات فنی را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["نوار چسب نارنجی tesa", "چسب tesa", "چسب مارکدار"],
+    image: "products/tesa-orange-tape",
+    imageAlt: "دو رول عریض نوار چسب نارنجی tesa",
+  },
+  {
+    slug: "tesa-blue-tape",
+    name: "نوار چسب آبی tesa (رول باریک)",
+    shortName: "آبی tesa",
+    category: "branded-tapes",
+    brand: "tesa",
+    summary:
+      "رول‌های باریک نوار چسب آبی tesa؛ روی هسته رول نام tesa چاپ شده است. مدل، عرض و طول رول را تلفنی بپرسید.",
+    description: [
+      "در تصویر دو رول باریک نوار چسب آبی دیده می‌شود. روی هسته کاغذی رول‌ها نام tesa چاپ شده است.",
+      "مدل دقیق، عرض، طول رول و کاربرد این نوار را از کارشناسان بپرسید.",
+    ],
+    features: ["برند tesa", "رنگ آبی", "رول باریک", "نام tesa روی هسته رول"],
+    highlights: [
+      { label: "برند", value: "tesa" },
+      { label: "رنگ", value: "آبی" },
+      { label: "شکل عرضه", value: "رول باریک" },
+      { label: "هسته", value: "کاغذی (چاپ tesa)" },
+    ],
+    chips: ["tesa", "آبی"],
+    tables: [
+      {
+        title: "اطلاعات ثبت‌شده",
+        head: ["مشخصه", "مقدار"],
+        rows: [
+          ["برند", "tesa"],
+          ["رنگ", "آبی"],
+          ["شکل عرضه", "رول باریک"],
+          ["هسته رول", "کاغذی (چاپ tesa)"],
+        ],
+        note: "مدل، عرض، طول رول و مشخصات فنی را از کارشناسان بپرسید.",
+      },
+    ],
+    keywords: ["نوار چسب آبی tesa", "چسب tesa", "چسب مارکدار"],
+    image: "products/tesa-blue-tape",
+    imageAlt: "دو رول باریک نوار چسب آبی tesa",
   },
 ];
 

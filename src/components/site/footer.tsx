@@ -4,7 +4,7 @@ import { developer, navLinks, siteConfig } from "@/config/site";
 import { categories } from "@/data/categories";
 import { Logo } from "@/components/site/logo";
 import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/site/brand-icons";
-import { DeveloperCredit } from "@/components/site/developer-credit";
+import { DeveloperCreditLazy } from "@/components/site/developer-credit-lazy";
 import { currentFaYear, mapLinks, whatsappHref } from "@/lib/format";
 
 export function Footer() {
@@ -16,7 +16,9 @@ export function Footer() {
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-3">
           <Logo tone="light" />
-          <p className="mt-6 max-w-sm text-sm leading-8">{siteConfig.tagline}. برندهای {siteConfig.brands.slice(0, 2).join(" و ")}.</p>
+          <p className="mt-6 max-w-sm text-sm leading-8">
+            {siteConfig.tagline}. برندهای {siteConfig.brands.slice(0, 3).join("، ")} و {siteConfig.brands[3]}.
+          </p>
           <ul className="mt-6 flex gap-2" aria-label="شبکه‌های اجتماعی">
             {[
               { href: siteConfig.social.instagram, label: "اینستاگرام", Icon: InstagramIcon },
@@ -29,7 +31,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="grid size-10 place-items-center rounded-full border border-paper/15 transition-colors hover:border-tape hover:bg-tape hover:text-white"
+                  className="grid size-10 place-items-center rounded-full border border-paper/15 transition-[border-color,background-color,color] duration-300 ease-out hover:border-paper/45 hover:bg-paper/10 hover:text-paper"
                 >
                   <Icon className="size-[18px]" />
                 </a>
@@ -43,7 +45,7 @@ export function Footer() {
           <ul className="grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link href={`/categories/${c.slug}/`} prefetch={false} className="transition-colors hover:text-masking">
+                <Link href={`/categories/${c.slug}/`} prefetch={false} className="transition-colors duration-300 ease-out hover:text-paper">
                   {c.name}
                 </Link>
               </li>
@@ -56,7 +58,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-colors hover:text-masking">
+                <Link href={l.href} className="transition-colors duration-300 ease-out hover:text-paper">
                   {l.label}
                 </Link>
               </li>
@@ -69,7 +71,7 @@ export function Footer() {
           <address className="space-y-4 text-sm not-italic">
             <p className="flex gap-3">
               <MapPinIcon className="mt-1 size-4 shrink-0 text-tape" />
-              <a href={mapLinks.google} target="_blank" rel="noopener noreferrer" className="hover:text-masking">
+              <a href={mapLinks.google} target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 ease-out hover:text-paper">
                 {siteConfig.address.street}
               </a>
             </p>
@@ -78,13 +80,13 @@ export function Footer() {
               <ul className="space-y-1">
                 {siteConfig.phones.map((p) => (
                   <li key={p.tel}>
-                    <a href={`tel:${p.tel}`} data-track="call" data-track-label="footer" className="hover:text-masking" dir="ltr">
+                    <a href={`tel:${p.tel}`} data-track="call" data-track-label="footer" className="transition-colors duration-300 ease-out hover:text-paper" dir="ltr">
                       {p.display}
                     </a>
                   </li>
                 ))}
                 <li>
-                  <a href={`tel:${siteConfig.mobile.tel}`} data-track="call" data-track-label="footer-mobile" className="hover:text-masking" dir="ltr">
+                  <a href={`tel:${siteConfig.mobile.tel}`} data-track="call" data-track-label="footer-mobile" className="transition-colors duration-300 ease-out hover:text-paper" dir="ltr">
                     {siteConfig.mobile.display}
                   </a>
                 </li>
@@ -92,7 +94,7 @@ export function Footer() {
             </div>
             <p className="flex gap-3">
               <MailIcon className="mt-1 size-4 shrink-0 text-tape" />
-              <a href={`mailto:${siteConfig.email}`} className="hover:text-masking" dir="ltr">
+              <a href={`mailto:${siteConfig.email}`} className="transition-colors duration-300 ease-out hover:text-paper" dir="ltr">
                 {siteConfig.email}
               </a>
             </p>
@@ -107,7 +109,7 @@ export function Footer() {
         className="pointer-events-none select-none text-center text-[28vw] leading-[0.8] font-black text-transparent lg:text-[22vw]"
         style={{ WebkitTextStroke: "1px rgb(245 242 235 / 0.12)" }}
       >
-        {siteConfig.brands[0]}
+        {siteConfig.mark}
       </p>
 
       <div className="border-t border-paper/10">
@@ -115,7 +117,7 @@ export function Footer() {
           <p>
             © {currentFaYear()} {siteConfig.legalName}. تمامی حقوق این وب‌سایت محفوظ است.
           </p>
-          {developer.enabled && <DeveloperCredit />}
+          {developer.enabled && <DeveloperCreditLazy />}
         </div>
       </div>
     </footer>

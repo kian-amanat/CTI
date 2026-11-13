@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpLeftIcon } from "lucide-react";
 import type { Product } from "@/data/products";
 import { getCategory } from "@/data/categories";
 import { Picture } from "@/components/site/picture";
@@ -12,7 +11,7 @@ export function ProductCard({
   product,
   className,
   headingLevel: Heading = "h3",
-  sizes = "(min-width: 1280px) 22vw, (min-width: 768px) 30vw, 90vw",
+  sizes = "(min-width: 1280px) 17rem, (min-width: 1024px) 28vw, (min-width: 640px) calc(50vw - 3.5rem), calc(100vw - 3.5rem)",
   variant = "default",
   ...rest
 }: {
@@ -20,7 +19,7 @@ export function ProductCard({
   className?: string;
   headingLevel?: "h2" | "h3";
   sizes?: string;
-  /** "overlay": full-bleed photo with the details on a dark fade; hover fills colour from the bottom, nothing moves */
+  /** "overlay": full-bleed photo with the details on a dark fade; hover only brightens the photo a little */
   variant?: "default" | "overlay";
 } & React.HTMLAttributes<HTMLElement>) {
   const category = getCategory(product.category);
@@ -33,19 +32,21 @@ export function ProductCard({
         {...rest}
       >
         <Picture image={product.image} alt={product.imageAlt} sizes={sizes} className="absolute inset-0 -z-10" />
-        {/* darker base under the text */}
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink from-15% via-ink/80 via-45% to-transparent to-75%" />
-        {/* hover: brand colour rises from the bottom edge */}
+        {/* dark base under the text; on hover it thins out slightly so the photo reads a little brighter */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-tape-deep from-20% via-tape-deep/85 via-50% to-transparent to-85% transition-[clip-path] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)] group-focus-within:[clip-path:inset(0_0_0_0)]"
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink from-15% via-ink/80 via-45% to-transparent to-75% transition-opacity duration-500 ease-out group-hover:opacity-85"
         />
         <span className="absolute start-4 top-4 rounded-full bg-paper/90 px-3 py-1 text-xs font-bold text-ink backdrop-blur">
           {category?.name}
         </span>
         <div className="p-5 sm:p-6">
           <Heading className="text-xl font-black leading-8">
-            <Link href={productPath(product)} prefetch={false} className="outline-none after:absolute after:inset-0 after:rounded-[1.8rem] focus-visible:after:ring-3 focus-visible:after:ring-masking">
+            <Link
+              href={productPath(product)}
+              prefetch={false}
+              className="outline-none after:absolute after:inset-0 after:rounded-[1.8rem] focus-visible:after:ring-3 focus-visible:after:ring-masking"
+            >
               {bidi(product.name)}
             </Link>
           </Heading>
@@ -58,7 +59,7 @@ export function ProductCard({
                 </li>
               ))}
             </ul>
-            <CardArrow className="size-11 bg-paper text-ink group-hover:bg-ink group-hover:text-paper" />
+            <CardArrow tone="dark" className="size-11" />
           </div>
         </div>
       </article>
@@ -68,26 +69,24 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "group relative flex flex-col rounded-[1.6rem] border border-ink/8 bg-card p-3 transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgb(19_20_24/0.35)]",
+        "group has-tape relative flex flex-col rounded-[1.6rem] border border-ink/8 bg-card p-3 transition-[border-color,background-color,box-shadow] duration-300 ease-out hover:border-ink/25 hover:bg-white hover:shadow-[0_24px_48px_-34px_rgb(19_20_24/0.45)]",
         className,
       )}
       {...rest}
     >
-      <span className="tape-corner" aria-hidden="true" />
       <div className="relative aspect-square overflow-hidden rounded-[1.2rem]">
-        <Picture
-          image={product.image}
-          alt={product.imageAlt}
-          sizes={sizes}
-          className="transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-        />
+        <Picture image={product.image} alt={product.imageAlt} sizes={sizes} />
         <span className="absolute start-3 top-3 rounded-full bg-paper/90 px-3 py-1 text-xs font-bold backdrop-blur">
           {category?.name}
         </span>
       </div>
       <div className="flex flex-1 flex-col px-2 pt-4 pb-2">
         <Heading className="text-lg font-black leading-8">
-          <Link href={productPath(product)} prefetch={false} className="after:absolute after:inset-0 after:rounded-[1.6rem]">
+          <Link
+            href={productPath(product)}
+            prefetch={false}
+            className="outline-none after:absolute after:inset-0 after:rounded-[1.6rem] focus-visible:after:ring-3 focus-visible:after:ring-ink/60"
+          >
             {bidi(product.name)}
           </Link>
         </Heading>
@@ -100,12 +99,7 @@ export function ProductCard({
               </li>
             ))}
           </ul>
-          <span
-            aria-hidden="true"
-            className="grid size-10 shrink-0 place-items-center rounded-full bg-ink text-paper transition-colors duration-300 group-hover:bg-tape"
-          >
-            <ArrowUpLeftIcon className="size-5 transition-transform duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
+          <CardArrow tone="light" className="size-10" />
         </div>
       </div>
     </article>

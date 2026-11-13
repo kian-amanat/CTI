@@ -12,7 +12,7 @@ export function FeaturedProducts() {
   const items = featuredProducts();
   return (
     <section data-hscroll aria-labelledby="featured-title" className="relative bg-paper-deep">
-      <div className="h-viewport py-20 lg:py-0">
+      <div className="h-viewport py-24 lg:py-0">
         <div className="container-x flex items-end justify-between gap-6">
           <SectionHeading
             id="featured-title"
@@ -26,7 +26,7 @@ export function FeaturedProducts() {
             <p className="mt-2 text-xs text-muted-foreground">برای دیدن بقیه، اسکرول کنید</p>
           </div>
         </div>
-        <div className="h-track mt-10 flex gap-5 overflow-x-auto px-4 pt-4 pb-8 sm:px-6 lg:mt-14 lg:gap-7 lg:ps-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pe-[30vw]">
+        <div className="h-track mt-12 flex gap-5 overflow-x-auto px-4 pt-4 pb-8 sm:px-6 lg:mt-16 lg:gap-7 lg:ps-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pe-[30vw]">
           {items.map((p) => (
             <ProductCard
               key={p.slug}
@@ -38,13 +38,9 @@ export function FeaturedProducts() {
           ))}
           <Link
             href="/products/"
-            className="group relative isolate flex w-[60vw] shrink-0 flex-col items-center justify-center gap-5 overflow-hidden rounded-[1.8rem] border-2 border-dashed border-ink/20 text-center font-black transition-colors duration-500 hover:border-transparent hover:text-white sm:w-[16rem]"
+            className="group relative flex w-[60vw] shrink-0 flex-col items-center justify-center gap-5 rounded-[1.8rem] border-2 border-dashed border-ink/20 text-center font-black transition-[border-color,background-color] duration-300 ease-out hover:border-ink/45 hover:bg-ink/[0.04] sm:w-[16rem]"
           >
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 -z-10 bg-tape-deep transition-[clip-path] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)]"
-            />
-            <CardArrow className="size-14 bg-ink text-paper group-hover:bg-paper group-hover:text-ink" />
+            <CardArrow tone="solid" className="size-14" />
             مشاهده همه محصولات
           </Link>
         </div>

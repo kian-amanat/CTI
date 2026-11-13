@@ -93,8 +93,12 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: color-mix(in oklab, var(--ink) 12%, transparent);
   --input: color-mix(in oklab, var(--ink) 16%, transparent);
-  --ring: var(--tape);
+  --ring: var(--ink);
   --radius: 0.9rem;
+
+  /* one calm easing + a few durations shared by every hover and page transition */
+  --ease-calm: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --page-fade: 320ms;
 }
 
 @layer base {
@@ -137,8 +141,10 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* Small piece of translucent masking tape stuck on a card corner */
-  .tape-corner {
+  /* Small piece of translucent masking tape stuck on a card corner: `.has-tape` on a position:relative parent draws
+     it with ::before (no extra element); `.tape-corner` is the same thing as a standalone element. */
+  .tape-corner,
+  .has-tape::before {
     position: absolute;
     inset-block-start: -10px;
     inset-inline-start: 50%;
@@ -153,6 +159,18 @@
     mask-composite: add;
     z-index: 2;
     pointer-events: none;
+  }
+  .has-tape::before {
+    content: "";
+  }
+
+  /* The arrow of the round card buttons (lucide arrow-up-left), as a mask so the chip needs no child elements */
+  .card-arrow::after {
+    content: "";
+    width: 1.25rem;
+    height: 1.25rem;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17V7h10'/%3E%3Cpath d='M17 17 7 7'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 
   .noise {
@@ -171,6 +189,20 @@
     animation: var(--animate-rise);
     animation-delay: calc(var(--i, 0) * 60ms);
   }
+  /* Headings that rise word by word: lite-motion.ts wraps each word in a mask just before the heading appears.
+     Persian is only ever split into words, never letters, so the joined letterforms stay intact. */
+  .split-mask {
+    display: inline-block;
+    overflow: clip;
+    vertical-align: top;
+    /* a little room so ascenders and the dots of Persian letters are not shaved off by the mask */
+    padding-block: 0.12em;
+    margin-block: -0.12em;
+  }
+  .split-word {
+    display: inline-block;
+  }
+
   /* decorative hero parts (badge, buttons, stats) may fade — they're never the LCP element */
   .hero-fade {
     animation: rise-fade 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -197,6 +229,11 @@
     width: max-content;
     overflow: visible;
     scroll-snap-type: none;
+  }
+  /* Each card gets its own small compositor layer, not the whole 5000px track: while the track is moved by
+     GSAP the cards just slide, and a hover repaint only redraws one card. (One giant layer could fail to
+     re-raster on hover and blank the whole page.) */
+  .is-hscroll .h-track > * {
     will-change: transform;
   }
 
@@ -234,11 +271,54 @@
   }
 }
 
+/* ---------- Parallax strips ----------
+   Decorative strips that drift while their section scrolls past. A scroll-driven CSS animation, so no JavaScript
+   and no main-thread work; a browser without support simply shows the strips still.
+   `.parallax-root` is the section whose passage drives it; `--parallax` is the travel in % of the strip's own
+   height (the sign is the direction). */
+@supports (animation-timeline: view()) {
+  .parallax-root {
+    view-timeline: --parallax block;
+  }
+  [data-parallax] {
+    animation: parallax-drift linear both;
+    animation-timeline: --parallax;
+  }
+}
+@keyframes parallax-drift {
+  from { transform: translateY(calc(var(--parallax, 12) * -1%)); }
+  to { transform: translateY(calc(var(--parallax, 12) * 1%)); }
+}
+
+/* ---------- Route transitions ----------
+   <RouteTransition> (React <ViewTransition>) starts a browser view transition on every navigation. Only the
+   "root" layer (what is on screen) cross-fades; the pages themselves are not named, because snapshotting a
+   9000px-tall page made every click hang. The header, footer and fixed buttons look identical before and after,
+   so they simply stay put during the fade. */
+::view-transition {
+  pointer-events: none; /* clicks reach the live page while a transition plays */
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--page-fade);
+  animation-timing-function: var(--ease-calm);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+  /* a scroll-driven animation ignores durations, so it has to be switched off explicitly */
+  [data-parallax] {
+    animation: none;
   }
 }

@@ -7,10 +7,14 @@ type ManifestEntry = {
   height: number;
   sizes: number[];
   color: string;
+  /** Content hash in the file names (see scripts/optimize-images.mjs) */
+  hash: string;
 };
 
 export type ResolvedImage = ManifestEntry & {
   key: string;
+  /** Widest file that exists, i.e. the real pixel size of the photo */
+  maxWidth: number;
   src: string;
   srcSet: string;
   url: (w: number) => string;
@@ -21,12 +25,14 @@ const entries = manifest as Record<string, ManifestEntry>;
 export function getImage(key: string): ResolvedImage | undefined {
   const entry = entries[key];
   if (!entry) return undefined;
-  const url = (w: number) => `/images/${key}-${w}.webp`;
+  const url = (w: number) => `/images/${key}-${w}.${entry.hash}.webp`;
   return {
     ...entry,
     key,
     url,
-    src: url(entry.sizes[Math.min(1, entry.sizes.length - 1)]),
+    maxWidth: entry.sizes[entry.sizes.length - 1],
+    // fallback for browsers that ignore srcset: the first size from 480px up (or the largest one)
+    src: url(entry.sizes.find((w) => w >= 480) ?? entry.sizes[entry.sizes.length - 1]),
     srcSet: entry.sizes.map((w) => `${url(w)} ${w}w`).join(", "),
   };
 }

@@ -22,20 +22,6 @@ export const metadata: Metadata = pageMetadata({
   absoluteTitle: true,
   description: siteConfig.description,
   path: "/",
-  keywords: [
-    "چسب دوطرفه",
-    "چسب دوطرفه سلولزی",
-    "چسب دوطرفه شیشه ای",
-    "فوم چسبدار دو طرفه",
-    "چسب ژله ای",
-    "آلومینیوم چسبدار",
-    "چسب برزنتی",
-    "چسب کنفی",
-    "چسب بسته بندی",
-    "نوار چسب صنعتی",
-    "NANO",
-    "QUICK TAPE",
-  ],
 });
 
 export default function HomePage() {
@@ -51,7 +37,7 @@ export default function HomePage() {
       {/* Desktop: the section holds still while scrolling opens each answer in turn (see data-steps in motion-root) */}
       <section data-steps aria-labelledby="faq-title" className="relative">
         <div className="steps-viewport">
-          <div className="container-x grid gap-10 py-20 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:py-28">
+          <div className="container-x grid gap-12 py-24 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-16 lg:py-36">
             <div>
               <SectionHeading
                 id="faq-title"
@@ -59,7 +45,7 @@ export default function HomePage() {
                 title="پیش از خرید بدانید"
                 description="پاسخ سؤال‌هایی که مشتریان بیشتر از همه می‌پرسند. سؤال دیگری دارید؟ یک تماس کافی است."
               />
-              <div className="steps-ui mt-10 items-center gap-4" aria-hidden="true">
+              <div className="steps-ui mt-12 items-center gap-4" aria-hidden="true">
                 <span data-steps-counter className="min-w-14 text-sm font-black">
                   ۱ / {faNumber(homeFaq.length)}
                 </span>

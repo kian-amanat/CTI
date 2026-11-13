@@ -3,6 +3,10 @@ import { NavLinks } from "@/components/site/nav-links";
 import { MobileNav } from "@/components/site/mobile-nav";
 import { CallButton, WhatsAppButton } from "@/components/site/contact-buttons";
 import { HeaderScrollState } from "@/components/site/header-scroll-state";
+import { categories } from "@/data/categories";
+
+// only what the menu shows, so the full category data never travels with the client code
+const menuCategories = categories.map(({ slug, name }) => ({ slug, name }));
 
 export function Header() {
   return (
@@ -23,7 +27,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <CallButton className="hidden h-10 sm:inline-flex" trackLabel="header" />
-          <MobileNav>
+          <MobileNav categories={menuCategories}>
             <CallButton className="w-full" trackLabel="mobile-menu" showNumber />
             <WhatsAppButton className="w-full" trackLabel="mobile-menu" />
           </MobileNav>

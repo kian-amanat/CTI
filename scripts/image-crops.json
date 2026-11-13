@@ -6,13 +6,15 @@
   "products/nano-aluminum-mesh-tape-170-micron": { "src": "11-nano-catalog-cellulose-opp-aluminium.jpg", "rect": [650, 622, 228, 244], "fit": "contain", "bg": "auto" },
   "products/nano-aluminum-foil-tape-50-micron": { "src": "11-nano-catalog-cellulose-opp-aluminium.jpg", "rect": [655, 895, 222, 250], "fit": "contain", "bg": "auto" },
 
-  "products/nano-double-sided-foam-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [640, 72, 224, 256], "fit": "contain", "bg": "auto" },
+  "products/nano-double-sided-foam-tape": { "src": "21-photo-nano-white-narrow-rolls.jpg", "rect": [127, 130, 640, 640], "fit": "cover" },
+  "gallery/nano-foam-catalog-photo": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [640, 72, 224, 256], "fit": "contain", "bg": "auto" },
   "products/gergonne-car-trim-foam-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [648, 350, 216, 256], "fit": "contain", "bg": "auto" },
   "products/nano-wide-roll-double-sided-foam-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [648, 636, 216, 262], "fit": "contain", "bg": "auto" },
   "products/knauf-joint-tape": { "src": "07-nano-catalog-foam-gergonne-knauf.jpg", "rect": [648, 928, 216, 248], "fit": "contain", "bg": "auto" },
 
   "products/nano-acrylic-gel-double-sided-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 128, 195, 232], "fit": "contain", "bg": "auto" },
-  "products/quick-tape-masking-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 396, 195, 236], "fit": "contain", "bg": "auto" },
+  "products/quick-tape-masking-tape": { "src": "35-photo-tesa-and-quick-masking-tape-hires.jpg", "rect": [480, 45, 430, 430], "fit": "cover" },
+  "gallery/quick-tape-masking-catalog-photo": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 396, 195, 236], "fit": "contain", "bg": "auto" },
   "products/nano-4970-double-sided-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 655, 195, 240], "fit": "contain", "bg": "auto" },
   "products/nano-4965-double-sided-tape": { "src": "09-nano-catalog-gel-masking-4970-4965.jpg", "rect": [648, 930, 195, 240], "fit": "contain", "bg": "auto" },
 
@@ -27,16 +29,35 @@
   "products/qbono-2185-scrim-double-sided-tape": { "src": "05-qbono-2185-scrim-tape.jpg", "rect": [192, 800, 330, 385], "fit": "contain", "bg": "auto" },
   "products/qbono-xpe-double-sided-foam-tape": { "src": "06-qbono-xpe-foam-tape.jpg", "rect": [135, 40, 150, 250], "fit": "contain", "bg": "auto" },
 
+  "products/tesa-4965-double-sided-tape": { "src": "22-photo-tesa-4965-wide-roll.jpg", "rect": [98, 240, 560, 560], "fit": "cover" },
+  "products/tesa-red-liner-double-sided-tape": { "src": "24-photo-tesa-red-liner-double-sided-rolls.jpg", "rect": [55, 70, 700, 700], "fit": "cover" },
+  "products/tesa-plate-mounting-cliche-tape": { "src": "27-photo-tesa-plate-mounting-cliche-tape.jpg", "rect": [20, 380, 560, 560], "fit": "cover" },
+  "products/tesa-professional-strong-duct-tape": { "src": "38-photo-tesa-professional-duct-tape.jpg", "rect": [20, 20, 780, 850], "fit": "blur" },
+  "products/tesa-masking-tape": { "src": "35-photo-tesa-and-quick-masking-tape-hires.jpg", "rect": [120, 45, 430, 430], "fit": "cover" },
+  "products/tesa-black-cloth-tape": { "src": "36-photo-tesa-black-cloth-tape-hires.jpg", "rect": [75, 80, 940, 940], "fit": "cover" },
+  "products/tesa-orange-tape": { "src": "31-photo-tesa-orange-wide-tape.jpg", "rect": [52, 60, 640, 640], "fit": "cover" },
+  "products/tesa-blue-tape": { "src": "32-photo-tesa-blue-tape-hires.jpg", "rect": [58, 65, 620, 620], "fit": "cover" },
+  "products/nitto-greenhouse-film-tape": { "src": "37-photo-nitto-greenhouse-film-tape.jpg", "rect": [40, 10, 880, 960], "fit": "blur" },
+  "products/scotch-3m-permanent-clear-mounting-tape": { "src": "23-photo-scotch-3m-clear-mounting-tape.jpg", "rect": [70, 305, 640, 640], "fit": "cover" },
+  "products/printed-packaging-tape": { "src": "29-photo-printed-packaging-tape-wall.jpg", "rect": [330, 0, 460, 460], "fit": "cover" },
+
   "gallery/qbono-pvc-electrical-colors": { "src": "03-qbono-pvc-electrical-tape.jpg", "rect": [60, 30, 450, 300], "fit": "contain", "bg": "#ffffff" },
   "gallery/nano-packaging-tape-pair": { "src": "12-nano-catalog-back-cover-contact.jpg", "rect": [520, 295, 265, 320], "fit": "contain", "bg": "auto" },
   "gallery/nano-packaging-tape-machine-roll": { "src": "12-nano-catalog-back-cover-contact.jpg", "rect": [50, 345, 240, 255], "fit": "contain", "bg": "auto" },
   "gallery/tesa-white-cloth-tape": { "src": "16-photo-tesa-white-cloth-tape.jpg", "rect": [50, 170, 500, 500], "fit": "cover" },
-  "gallery/tesa-and-quick-masking-tape": { "src": "19-photo-tesa-and-quick-masking-tape.jpg", "rect": [60, 378, 440, 324], "fit": "blur" },
-  "gallery/tesa-blue-tape": { "src": "20-photo-tesa-blue-tape.jpg", "rect": [35, 150, 530, 530], "fit": "cover" },
-
-  "categories/filament-tape": { "src": "13-photo-filament-tape.jpg", "rect": [10, 247, 588, 588], "fit": "cover" },
   "gallery/lohmann-double-sided-rolls": { "src": "14-photo-lohmann-rolls.jpg", "rect": [132, 427, 226, 226], "fit": "cover" },
+  "gallery/lohmann-boxes": { "src": "28-photo-lohmann-boxes.jpg", "rect": [30, 190, 720, 720], "fit": "cover" },
+  "gallery/printed-packaging-tape-wall": { "src": "29-photo-printed-packaging-tape-wall.jpg", "rect": [620, 0, 460, 460], "fit": "cover" },
+  "gallery/shelf-tesa-kanafi-and-clear-rolls": { "src": "25-photo-shelf-tesa-and-double-sided-jumbo-rolls.jpg", "rect": [20, 50, 330, 700], "fit": "blur" },
+  "gallery/shelf-cliche-gel-pvc-rolls": { "src": "25-photo-shelf-tesa-and-double-sided-jumbo-rolls.jpg", "rect": [590, 70, 410, 680], "fit": "blur" },
+  "gallery/shelf-foam-1mm-and-nano-glass-rolls": { "src": "26-photo-shelf-foam-glass-cellulose-filament-rolls.jpg", "rect": [0, 30, 500, 600], "fit": "blur" },
+  "gallery/shelf-cellulose-top-tape-and-filament-rolls": { "src": "26-photo-shelf-foam-glass-cellulose-filament-rolls.jpg", "rect": [485, 20, 595, 610], "fit": "cover" },
+
+  "categories/filament-tape": { "src": "30-photo-filament-tape-hires.jpg", "rect": [105, 20, 800, 800], "fit": "cover" },
+  "categories/aluminum-foil-tape": { "src": "34-photo-aluminium-tapes.jpg", "rect": [105, 0, 829, 829], "fit": "cover" },
+  "categories/cloth-duct-tape": { "src": "33-photo-duct-tape-colors-and-filament.jpg", "rect": [205, 25, 470, 290], "fit": "blur" },
+  "gallery/duct-tape-colors-row": { "src": "33-photo-duct-tape-colors-and-filament.jpg", "rect": [30, 30, 840, 240], "fit": "blur" },
+  "categories/masking-tape": { "src": "35-photo-tesa-and-quick-masking-tape-hires.jpg", "rect": [0, 0, 1080, 578], "fit": "blur" },
   "categories/branded-tapes": { "src": "15-photo-brands-sign-tesa-lohmann-3m.jpg", "rect": [53, 289, 502, 502], "fit": "cover" },
-  "categories/heat-resistant-cloth-tape": { "src": "17-photo-tesa-black-cloth-tape.jpg", "rect": [20, 250, 570, 570], "fit": "cover" },
   "categories/packaging-tape": { "src": "12-nano-catalog-back-cover-contact.jpg", "rect": [520, 295, 265, 320], "fit": "contain", "bg": "auto" }
 }

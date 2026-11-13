@@ -26,8 +26,20 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 
 /**
  * Four floating tape rolls (foam, VHB with red liner, clear nano, masking) built from plain
- * geometry — no model files to download. Lazy-loaded on desktop only, after the page is idle.
+ * geometry — no model files to download. Lazy-loaded on capable desktops only, after the visitor's first
+ * pointer movement or scroll (see hero-visual.tsx).
+ *
+ * Kept light on purpose:
+ *  - 30 frames a second while only the rolls' own slow drift moves, full speed while the pointer or the
+ *    page is moving;
+ *  - pixel ratio capped at 1.5 and the default (not "high-performance") GPU, so a laptop does not wake its
+ *    discrete graphics chip for a decoration;
+ *  - it stops entirely when off-screen or in a hidden tab;
+ *  - if the machine cannot keep up, the pixel ratio steps down and, failing that, the scene gives up and the
+ *    SVG illustration stays.
  */
+const MAX_PIXEL_RATIO = 1.5;
+const AMBIENT_FPS = 30;
 
 type RollSpec = {
   outer: number;
@@ -89,7 +101,7 @@ function stripGeometry(R: number, h: number) {
     [2.0 * R, -R * 2.15],
   ].map(([x, z]) => new Vector3(x, 0, z));
   const curve = new CatmullRomCurve3(pts, false, "centripetal");
-  const N = 48;
+  const N = 32;
   const pos = new Float32Array((N + 1) * 2 * 3);
   const uv = new Float32Array((N + 1) * 2 * 2);
   const idx: number[] = [];
@@ -113,15 +125,15 @@ function stripGeometry(R: number, h: number) {
 function makeRoll(spec: RollSpec) {
   const { outer: R, inner: r, height: h } = spec;
   const group = new Group();
-  group.add(new Mesh(new CylinderGeometry(R, R, h, 96, 1, true), spec.side));
+  group.add(new Mesh(new CylinderGeometry(R, R, h, 64, 1, true), spec.side));
   const innerMat = spec.face.core
     ? new MeshStandardMaterial({ color: spec.face.core, roughness: 0.9, side: BackSide })
     : spec.side;
-  group.add(new Mesh(new CylinderGeometry(r, r, h, 64, 1, true), innerMat));
+  group.add(new Mesh(new CylinderGeometry(r, r, h, 48, 1, true), innerMat));
   const faceMat =
     spec.faceMaterial ??
     new MeshStandardMaterial({ map: faceTexture(spec.face, r, R), roughness: 0.7, side: DoubleSide });
-  const ring = new RingGeometry(r, R, 96, 1);
+  const ring = new RingGeometry(r, R, 64, 1);
   const top = new Mesh(ring, faceMat);
   top.rotation.x = -Math.PI / 2;
   top.position.y = h / 2;
@@ -141,14 +153,20 @@ export type TapeScene = { dispose: () => void };
 /** Let the browser breathe between setup steps so no single task blocks input for long. */
 const yieldToMain = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 
-export function createTapeScene(container: HTMLElement, trackEl: HTMLElement, onReady: () => void): TapeScene {
+export function createTapeScene(container: HTMLElement, trackEl: HTMLElement, onReady: () => void, onGiveUp: () => void): TapeScene {
   let disposed = false;
   const cleanups: (() => void)[] = [];
   const teardown = () => cleanups.splice(0).reverse().forEach((fn) => fn());
+  const giveUp = () => {
+    disposed = true;
+    teardown();
+    onGiveUp();
+  };
 
   const init = async () => {
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    const renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "default" });
+    let ratio = Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO);
+    renderer.setPixelRatio(ratio);
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
     renderer.outputColorSpace = SRGBColorSpace;
@@ -257,35 +275,73 @@ export function createTapeScene(container: HTMLElement, trackEl: HTMLElement, on
     ro.observe(container);
     cleanups.push(() => ro.disconnect());
 
-    /* input */
+    /* input: moving the pointer or scrolling puts the scene in "interactive" mode for a moment */
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+    let lastInput = -Infinity;
     const onPointer = (e: PointerEvent) => {
       pointer.tx = (e.clientX / window.innerWidth) * 2 - 1;
       pointer.ty = (e.clientY / window.innerHeight) * 2 - 1;
+      lastInput = performance.now();
+    };
+    const onScroll = () => {
+      lastInput = performance.now();
     };
     window.addEventListener("pointermove", onPointer, { passive: true });
-    cleanups.push(() => window.removeEventListener("pointermove", onPointer));
+    window.addEventListener("scroll", onScroll, { passive: true });
+    cleanups.push(() => {
+      window.removeEventListener("pointermove", onPointer);
+      window.removeEventListener("scroll", onScroll);
+    });
 
     /* loop, paused when off-screen or tab hidden */
     let visible = true;
     let raf = 0;
-    let last = performance.now();
+    let lastTick = performance.now(); // the last animation frame, drawn or not
+    let lastRender = 0;
+    let frameMs = 1000 / 60; // smoothed time between animation frames: grows when the page cannot keep up
+    let struggling = 0;
+    let ticks = 0;
     let t = 0;
     let scroll = 0;
     let first = true;
-    const loop = () => {
+    // smoothing that feels the same at 30 and at 60 frames a second
+    const ease = (rate: number, dt: number) => 1 - Math.pow(1 - rate, dt * 60);
+
+    const loop = (now: number) => {
       cancelAnimationFrame(raf);
       if (!visible || document.hidden || disposed) return;
       raf = requestAnimationFrame(loop);
-      const now = performance.now();
-      const dt = Math.min(0.05, (now - last) / 1000);
-      last = now;
+
+      const gap = now - lastTick;
+      lastTick = now;
+      if (gap < 250) frameMs += (gap - frameMs) * 0.05; // a long gap means the tab was hidden: ignore it
+      if (++ticks > 90) {
+        // the first frames include shader compilation, so only judge after they have passed
+        struggling = frameMs > 26 ? struggling + 1 : Math.max(0, struggling - 2);
+        if (struggling > 120) {
+          struggling = 0;
+          frameMs = 1000 / 60;
+          if (ratio > 1) {
+            ratio = Math.max(1, ratio - 0.25);
+            renderer.setPixelRatio(ratio);
+            resize();
+          } else {
+            giveUp();
+            return;
+          }
+        }
+      }
+
+      const interactive = now - lastInput < 700;
+      if (!interactive && now - lastRender < 1000 / AMBIENT_FPS - 2) return; // the ambient drift needs only 30 fps
+      const dt = lastRender ? Math.min(0.05, (now - lastRender) / 1000) : 1 / 60;
+      lastRender = now;
       t += dt;
       const rect = trackEl.getBoundingClientRect();
       const target = Math.min(1, Math.max(0, -rect.top / rect.height));
-      scroll += (target - scroll) * 0.08;
-      pointer.x += (pointer.tx - pointer.x) * 0.05;
-      pointer.y += (pointer.ty - pointer.y) * 0.05;
+      scroll += (target - scroll) * ease(0.08, dt);
+      pointer.x += (pointer.tx - pointer.x) * ease(0.05, dt);
+      pointer.y += (pointer.ty - pointer.y) * ease(0.05, dt);
 
       stage.rotation.y = pointer.x * 0.35 + scroll * 0.9;
       stage.rotation.x = pointer.y * 0.2 + scroll * 0.35;
@@ -303,12 +359,12 @@ export function createTapeScene(container: HTMLElement, trackEl: HTMLElement, on
     };
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (visible) loop();
+      if (visible) loop(performance.now());
     });
     io.observe(container);
     const onVisibility = () => {
-      last = performance.now();
-      loop();
+      lastRender = 0;
+      loop(performance.now());
     };
     document.addEventListener("visibilitychange", onVisibility);
     cleanups.push(() => {
@@ -316,7 +372,7 @@ export function createTapeScene(container: HTMLElement, trackEl: HTMLElement, on
       io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
     });
-    loop();
+    loop(performance.now());
   };
 
   init().catch(teardown);

@@ -5,7 +5,7 @@ import { toFaDigits } from "@/lib/format";
 
 export function OrderProcess() {
   return (
-    <section aria-labelledby="process-title" className="bg-paper-deep py-20 lg:py-28">
+    <section aria-labelledby="process-title" className="bg-paper-deep py-24 lg:py-36">
       <div className="container-x">
         <SectionHeading
           id="process-title"
@@ -14,7 +14,7 @@ export function OrderProcess() {
           description="خرید ساده است: بدون ثبت‌نام و سبد خرید. قیمت روز را بپرسید و سفارش دهید."
           align="center"
         />
-        <div data-draw-root className="relative mt-16">
+        <div data-draw-root className="relative mt-16 lg:mt-24">
           {/* a strip of tape drawn across the steps as you scroll */}
           <svg className="absolute inset-x-0 top-10 hidden h-24 w-full lg:block" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
             <path
@@ -39,7 +39,7 @@ export function OrderProcess() {
             ))}
           </ol>
         </div>
-        <div data-reveal="up" className="mt-12 flex flex-wrap justify-center gap-3">
+        <div data-reveal="up" className="mt-14 flex flex-wrap justify-center gap-3 lg:mt-16">
           <CallButton size="lg" trackLabel="process" showNumber />
           <WhatsAppButton size="lg" trackLabel="process" />
         </div>

@@ -1,9 +1,11 @@
 /**
  * Every business detail the site shows lives here.
  *
- * Source of every value: the client's printed NANO catalog (back cover + footer of each page).
- * Items marked CONFIRM were read from the catalog but should be double-checked with the client
- * before launch (see README "Before launch").
+ * Brand name, tagline and logo: the client's CTI logo files.
+ * Phones, address and social handles: the back cover and footers of the printed NANO catalog.
+ * CONFIRM: that NANO catalog belongs to the "بازرگانی چسب و شبرنگ استاندارد" company, so check with the
+ * client that these contact details are CTI's own before launch.
+ * Items marked CONFIRM should be double-checked with the client.
  */
 
 const phone = (national: string) => ({
@@ -14,15 +16,18 @@ const phone = (national: string) => ({
 });
 
 export const siteConfig = {
-  /** Short name: header, footer, installed-app name */
-  name: "چسب و شبرنگ استاندارد",
-  /** Company name exactly as printed in the catalog */
-  legalName: "بازرگانی چسب و شبرنگ استاندارد",
-  /** Brand line printed under the NANO logo in the catalog */
-  nameEn: "NANO Industrial Adhesive Tape",
-  tagline: "تولید و واردات انواع چسب یکطرفه و دوطرفه صنعتی",
+  /** Brand name as written in the client's logo: header, footer, installed-app name */
+  name: "چسب طیف ایران",
+  /** Full name used in titles and structured data */
+  legalName: "چسب طیف ایران (CTI)",
+  /** Latin name shown under the Persian name in the logo lockup */
+  nameEn: "Chasb Teyf Iran",
+  /** The letters of the logo (also the outlined wordmark in the footer) */
+  mark: "CTI",
+  /** The client's own tagline, printed on their logo card */
+  tagline: "تهیه و عرضه برترین برندهای چسب دوطرفه",
   description:
-    "بازرگانی چسب و شبرنگ استاندارد؛ تولید و واردات چسب دوطرفه سلولزی، شیشه‌ای، فوم و ژله‌ای و نوار چسب‌های یکطرفه (آلومینیومی، برزنتی، کنفی، بسته‌بندی، PVC) با برندهای NANO و QUICK TAPE. تهران، میدان امام خمینی. استعلام قیمت روز تلفنی.",
+    "چسب طیف ایران (CTI): تهیه و عرضه برترین برندهای چسب دوطرفه و نوار چسب صنعتی؛ سلولزی، شیشه‌ای، فوم، ژله‌ای، آلومینیومی، برزنتی، کنفی و بسته‌بندی از برندهای tesa، NANO، 3M و Lohmann. استعلام قیمت روز تلفنی.",
   /** Canonical domain. Override with NEXT_PUBLIC_SITE_URL for staging builds. */
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://chasbteyfiran.com").replace(/\/$/, ""),
   /** Set NEXT_PUBLIC_NOINDEX=true on staging/preview deployments so they never get indexed. */
@@ -50,8 +55,8 @@ export const siteConfig = {
     instagram: "https://instagram.com/nano_enk",
     telegram: "https://t.me/standard_enk",
   },
-  /** Brands that appear in the client's catalog. Shown as text, no logos. */
-  brands: ["NANO", "QUICK TAPE", "tesa", "Lohmann", "3M", "NITTO", "KNAUF", "Qbono"],
+  /** Brands that appear in the client's catalogs and shop photos. Shown as text, no logos. */
+  brands: ["tesa", "NANO", "QUICK TAPE", "3M", "Lohmann", "NITTO", "KNAUF", "Qbono", "TOP TAPE"],
 } as const;
 
 /** Main number for call buttons and structured data */

@@ -1,6 +1,5 @@
 import { siteConfig } from "@/config/site";
 import type { Category, Faq } from "@/data/categories";
-import { getCategory } from "@/data/categories";
 import type { Product } from "@/data/products";
 import { absoluteUrl } from "@/lib/format";
 import { productImage } from "@/lib/images";
@@ -79,23 +78,38 @@ export const productPath = (p: Product) => `/products/${p.slug}/`;
 export const categoryPath = (c: Category | string) => `/categories/${typeof c === "string" ? c : c.slug}/`;
 
 /**
- * No price/offer on purpose: prices are given by phone. Google still reads the product entity,
- * we just don't fake an Offer (which would be a structured-data policy violation).
+ * A product page is marked up as an `ItemPage` that is `about` the item, not as a `Product`.
+ *
+ * Google's product snippet needs `offers`, `review` or `aggregateRating`, and this catalogue has none of them on
+ * purpose: prices are given by phone and there are no real reviews, and inventing either breaks Google's
+ * structured-data policy. A `Product` without them cannot get any rich result and is reported as an error in
+ * Search Console's "Product snippets" report. If real prices or reviews ever exist, turn `about` back into a
+ * `Product` (with `offers`, `brand`, `mpn` and `additionalProperty` from `p.highlights`).
  */
-export function productLd(p: Product) {
+export function productPageLd(p: Product) {
   const img = productImage(p);
+  const url = absoluteUrl(productPath(p));
+  const image = img ? { url: absoluteUrl(img.url(img.width)), width: img.width, height: img.height } : undefined;
   return {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "@id": `${absoluteUrl(productPath(p))}#product`,
+    "@type": "ItemPage",
+    "@id": `${url}#webpage`,
+    url,
     name: p.name,
-    ...(p.model ? { mpn: p.model, model: p.model } : {}),
     description: p.summary,
-    category: getCategory(p.category)?.name,
-    url: absoluteUrl(productPath(p)),
-    image: img ? img.sizes.map((w) => absoluteUrl(img.url(w))) : undefined,
-    brand: { "@type": "Brand", name: p.brand },
-    additionalProperty: p.highlights.map((s) => ({ "@type": "PropertyValue", name: s.label, value: s.value })),
+    inLanguage: "fa-IR",
+    isPartOf: { "@id": websiteId },
+    ...(image ? { primaryImageOfPage: { "@type": "ImageObject", ...image } } : {}),
+    about: {
+      "@type": "Thing",
+      "@id": `${url}#item`,
+      name: p.name,
+      description: p.summary,
+      url,
+      ...(image ? { image: image.url } : {}),
+      ...(p.model ? { identifier: p.model } : {}),
+    },
+    ...(p.brand ? { mentions: { "@type": "Brand", name: p.brand } } : {}),
   };
 }
 

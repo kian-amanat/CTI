@@ -27,8 +27,7 @@ export function CallButton({ className, trackLabel, size = "md", showNumber = fa
       href={telHref}
       data-track="call"
       data-track-label={trackLabel}
-      data-magnetic
-      className={cn(buttonVariants(), sizes[size], "font-bold shadow-[0_10px_30px_-10px_var(--tape)]", className)}
+      className={cn(buttonVariants(), sizes[size], "font-bold shadow-[0_10px_30px_-14px_var(--tape)]", className)}
     >
       <PhoneIcon className="size-5" />
       <span>{showNumber ? <span dir="ltr">{primaryPhone.display}</span> : "تماس برای خرید"}</span>
@@ -44,14 +43,13 @@ export function WhatsAppButton({ className, message, trackLabel, size = "md", to
       rel="noopener noreferrer"
       data-track="whatsapp"
       data-track-label={trackLabel}
-      data-magnetic
       className={cn(
         buttonVariants({ variant: "outline" }),
         sizes[size],
         "font-bold",
         tone === "dark"
-          ? "border-paper/20 bg-transparent text-paper hover:bg-paper/10 hover:text-paper dark:bg-transparent"
-          : "border-ink/15 bg-card hover:border-whatsapp hover:bg-whatsapp/10",
+          ? "border-paper/20 bg-transparent text-paper hover:border-paper/45 hover:bg-paper/10 hover:text-paper dark:bg-transparent"
+          : "border-ink/15 bg-card hover:border-ink/35 hover:bg-paper-deep",
         className,
       )}
     >

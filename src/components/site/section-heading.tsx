@@ -22,7 +22,7 @@ export function SectionHeading({
   return (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && (
-        <p className={cn("mb-4 inline-flex items-center gap-2 text-sm font-bold", tone === "light" ? "text-masking" : "text-tape-deep")}>
+        <p className={cn("mb-5 inline-flex items-center gap-2 text-sm font-bold", tone === "light" ? "text-masking" : "text-tape-deep")}>
           <span data-tape className="inline-block h-2.5 w-8 -rotate-6 rounded-[2px] bg-current opacity-80" aria-hidden="true" />
           {eyebrow}
         </p>
@@ -31,7 +31,7 @@ export function SectionHeading({
         {title}
       </Tag>
       {description && (
-        <p data-reveal="fade" className={cn("mt-5 leading-8", tone === "light" ? "text-paper/70" : "text-muted-foreground")}>
+        <p data-reveal="fade" className={cn("mt-6 leading-8", tone === "light" ? "text-paper/70" : "text-muted-foreground")}>
           {description}
         </p>
       )}

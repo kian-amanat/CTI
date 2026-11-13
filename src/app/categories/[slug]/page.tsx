@@ -29,10 +29,9 @@ export async function generateMetadata({ params }: PageProps<"/categories/[slug]
   const cover = categoryCover(category);
   const img = cover && getImage(cover.key);
   return pageMetadata({
-    title: category.title,
+    title: category.seoTitle ?? category.title,
     description: category.summary,
     path: categoryPath(category),
-    keywords: category.keywords,
     image: img && cover ? { url: absoluteUrl(img.url(img.width)), width: img.width, height: img.height, alt: cover.alt } : undefined,
   });
 }
@@ -56,28 +55,27 @@ export default async function CategoryPage({ params }: PageProps<"/categories/[s
             { name: category.name, path: categoryPath(category) },
           ]}
         />
-        <header className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+        <header className="mt-10 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:gap-14">
           <div>
             {items.length > 0 && <p className="text-sm font-bold text-tape-deep">{faNumber(items.length)} محصول</p>}
             <h1 className="mt-3 text-4xl font-black sm:text-5xl lg:leading-[1.3]">{bidi(category.title)}</h1>
-            <div className="mt-8 space-y-4 leading-8 text-muted-foreground">
+            <div className="mt-9 space-y-5 leading-8 text-muted-foreground">
               {category.intro.map((p) => (
                 <p key={p.slice(0, 20)}>{bidi(p)}</p>
               ))}
             </div>
           </div>
           {showCover && cover && (
-            <figure className="relative mx-auto w-full max-w-md rounded-[2rem] border border-ink/8 bg-card p-3 lg:mx-0">
-              <span className="tape-corner" aria-hidden="true" />
+            <figure className="has-tape relative mx-auto w-full max-w-md rounded-[2rem] border border-ink/8 bg-card p-3 lg:mx-0">
               <div className="aspect-square overflow-hidden rounded-[1.5rem]">
-                <Picture image={cover.key} alt={cover.alt} sizes="(min-width: 1024px) 35vw, 90vw" priority />
+                <Picture image={cover.key} alt={cover.alt} sizes="(min-width: 1024px) 28rem, calc(100vw - 3.5rem)" priority plate />
               </div>
             </figure>
           )}
         </header>
 
         {items.length > 0 ? (
-          <section aria-label={`فهرست ${category.name}`} className="mt-14">
+          <section aria-label={`فهرست ${category.name}`} className="mt-20">
             <div data-reveal-group className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {items.map((p) => (
                 <ProductCard key={p.slug} product={p} headingLevel="h2" data-reveal-item />
@@ -85,14 +83,14 @@ export default async function CategoryPage({ params }: PageProps<"/categories/[s
             </div>
           </section>
         ) : (
-          <section aria-labelledby="inquiry-title" className="mt-14 rounded-[1.8rem] bg-ink p-6 text-paper sm:p-10">
+          <section aria-labelledby="inquiry-title" className="mt-20 rounded-[1.8rem] bg-ink p-8 text-paper sm:p-12">
             <h2 id="inquiry-title" className="text-2xl font-black">
               مدل‌ها و قیمت روز را بپرسید
             </h2>
-            <p className="mt-3 max-w-2xl leading-8 text-paper/75">
+            <p className="mt-4 max-w-2xl leading-8 text-paper/75">
               مشخصات فنی کامل این گروه هنوز در کاتالوگ آنلاین ثبت نشده است. مدل‌های موجود، ابعاد و قیمت روز را از کارشناسان بپرسید.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <CallButton size="lg" showNumber trackLabel={`category-${category.slug}`} />
               <WhatsAppButton
                 size="lg"
@@ -105,38 +103,43 @@ export default async function CategoryPage({ params }: PageProps<"/categories/[s
         )}
 
         {category.gallery && (
-          <section aria-labelledby="gallery-title" className="mt-16">
+          <section aria-labelledby="gallery-title" className="mt-28">
             <h2 id="gallery-title" className="text-2xl font-black sm:text-3xl">
-              تصاویر نمونه
+              تصاویر بیشتر
             </h2>
-            <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
               {category.gallery.map((g) => (
-                <li key={g.image} className="aspect-square overflow-hidden rounded-[1.4rem] border border-ink/8 bg-card">
-                  <Picture image={g.image} alt={g.alt} sizes="(min-width: 1024px) 22vw, 45vw" />
+                <li key={g.image}>
+                  <figure>
+                    <div className="aspect-square overflow-hidden rounded-[1.4rem] border border-ink/8 bg-card">
+                      <Picture image={g.image} alt={g.alt} sizes="(min-width: 1024px) 22vw, 45vw" />
+                    </div>
+                    {g.caption && <figcaption className="mt-3 px-1 text-sm leading-7 text-muted-foreground">{bidi(g.caption)}</figcaption>}
+                  </figure>
                 </li>
               ))}
             </ul>
           </section>
         )}
 
-        <section aria-labelledby="cfaq-title" className="mt-24 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+        <section aria-labelledby="cfaq-title" className="mt-32 grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <h2 id="cfaq-title" data-split className="text-3xl font-black">
             سؤالات متداول درباره {category.name}
           </h2>
           <FaqList items={category.faq} />
         </section>
 
-        <nav aria-labelledby="other-title" className="mt-24 pb-20">
+        <nav aria-labelledby="other-title" className="mt-32 pb-28">
           <h2 id="other-title" className="text-2xl font-black">
             گروه‌های دیگر
           </h2>
-          <ul className="mt-6 flex flex-wrap gap-3">
+          <ul className="mt-8 flex flex-wrap gap-3">
             {others.map((c) => (
               <li key={c.slug}>
                 <Link
                   href={categoryPath(c)}
                   prefetch={false}
-                  className="block rounded-full border border-ink/12 bg-card px-5 py-3 font-bold transition-colors hover:border-tape hover:bg-tape hover:text-white"
+                  className="block rounded-full border border-ink/12 bg-card px-5 py-3 font-bold transition-[border-color,background-color] duration-300 ease-out hover:border-ink/35 hover:bg-paper-deep"
                 >
                   {c.name}
                 </Link>

@@ -8,7 +8,9 @@
  */
 const LATIN_RUN = /[A-Za-z0-9](?:[A-Za-z0-9 .,/%°~#+\-µ≥×:&]*[A-Za-z0-9%°#µ])?/g;
 
-export const bidi = (text: string) => text.replace(LATIN_RUN, "⁦$&⁩");
+export const bidi = (text: string) =>
+  // spaces inside a run become no-break spaces so a run never splits across two lines (which scrambles its order)
+  text.replace(LATIN_RUN, (run) => `⁦${run.replace(/ /g, " ")}⁩`);
 
 /** True for strings made only of Latin letters, digits and symbols (values, standards, codes). */
 export const isLtr = (s: string) => !/[؀-ۿ]/.test(s) && /[A-Za-z0-9]/.test(s);

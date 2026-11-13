@@ -6,15 +6,17 @@ import { mapLinks } from "@/lib/format";
 export function FinalCta({ title = "قیمت روز را همین حالا بپرسید" }: { title?: string }) {
   return (
     <section aria-labelledby="cta-title" className="px-2 py-6 sm:px-3">
-      <div data-reveal="clip" className="relative isolate overflow-hidden rounded-[2rem] bg-tape px-6 py-16 text-white sm:px-12 lg:rounded-[2.75rem] lg:py-24">
+      <div data-reveal="clip" className="parallax-root relative isolate overflow-hidden rounded-[2rem] bg-tape px-6 py-16 text-white sm:px-12 lg:rounded-[2.75rem] lg:py-24">
         <div className="noise absolute inset-0 -z-10 opacity-20 mix-blend-overlay" />
         <div
-          data-parallax="18"
+          data-parallax
+          style={{ "--parallax": 18 } as React.CSSProperties}
           aria-hidden="true"
           className="absolute -top-10 -left-24 -z-10 h-24 w-[32rem] -rotate-12 bg-masking/90 shadow-lg"
         />
         <div
-          data-parallax="-14"
+          data-parallax
+          style={{ "--parallax": -14 } as React.CSSProperties}
           aria-hidden="true"
           className="absolute -right-20 -bottom-6 -z-10 h-20 w-[28rem] rotate-6 bg-ink/90"
         />

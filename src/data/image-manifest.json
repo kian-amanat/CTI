@@ -3,288 +3,557 @@
     "width": 464,
     "height": 464,
     "sizes": [
-      400,
+      360,
       464
     ],
-    "color": "#b83838"
+    "color": "#b83838",
+    "hash": "8c6e261b"
   },
   "products/nano-opp-glass-double-sided-tape": {
     "width": 480,
     "height": 480,
     "sizes": [
-      400,
+      360,
       480
     ],
-    "color": "#b83838"
+    "color": "#b83838",
+    "hash": "cff50dfc"
   },
   "products/nano-aluminum-mesh-tape-170-micron": {
     "width": 488,
     "height": 488,
     "sizes": [
-      400,
+      360,
       488
     ],
-    "color": "#c8c8c8"
+    "color": "#c8c8c8",
+    "hash": "ff7d5174"
   },
   "products/nano-aluminum-foil-tape-50-micron": {
     "width": 500,
     "height": 500,
     "sizes": [
-      400,
+      360,
       500
     ],
-    "color": "#985858"
+    "color": "#985858",
+    "hash": "ec749be1"
   },
   "products/nano-double-sided-foam-tape": {
+    "width": 640,
+    "height": 640,
+    "sizes": [
+      360,
+      480,
+      640
+    ],
+    "color": "#685858",
+    "hash": "0be1fe87"
+  },
+  "gallery/nano-foam-catalog-photo": {
     "width": 512,
     "height": 512,
     "sizes": [
-      400,
+      360,
       512
     ],
-    "color": "#a85858"
+    "color": "#a85858",
+    "hash": "9ee790b9"
   },
   "products/gergonne-car-trim-foam-tape": {
     "width": 512,
     "height": 512,
     "sizes": [
-      400,
+      360,
       512
     ],
-    "color": "#984838"
+    "color": "#984838",
+    "hash": "b0ef24c7"
   },
   "products/nano-wide-roll-double-sided-foam-tape": {
     "width": 524,
     "height": 524,
     "sizes": [
-      400,
+      360,
+      480,
       524
     ],
-    "color": "#884848"
+    "color": "#884848",
+    "hash": "b1d5f867"
   },
   "products/knauf-joint-tape": {
     "width": 496,
     "height": 496,
     "sizes": [
-      400,
+      360,
       496
     ],
-    "color": "#a86868"
+    "color": "#a86868",
+    "hash": "b69bf5a4"
   },
   "products/nano-acrylic-gel-double-sided-tape": {
     "width": 464,
     "height": 464,
     "sizes": [
-      400,
+      360,
       464
     ],
-    "color": "#a83838"
+    "color": "#a83838",
+    "hash": "b0d7df31"
   },
   "products/quick-tape-masking-tape": {
+    "width": 430,
+    "height": 430,
+    "sizes": [
+      360,
+      430
+    ],
+    "color": "#482828",
+    "hash": "0da8f8d4"
+  },
+  "gallery/quick-tape-masking-catalog-photo": {
     "width": 472,
     "height": 472,
     "sizes": [
-      400,
+      360,
       472
     ],
-    "color": "#a86858"
+    "color": "#a86858",
+    "hash": "88ab4159"
   },
   "products/nano-4970-double-sided-tape": {
     "width": 480,
     "height": 480,
     "sizes": [
-      400,
+      360,
       480
     ],
-    "color": "#a84848"
+    "color": "#a84848",
+    "hash": "5fbb0524"
   },
   "products/nano-4965-double-sided-tape": {
     "width": 480,
     "height": 480,
     "sizes": [
-      400,
+      360,
       480
     ],
-    "color": "#a85848"
+    "color": "#a85848",
+    "hash": "1a69be99"
   },
   "products/nano-crystal-packaging-tape": {
     "width": 464,
     "height": 464,
     "sizes": [
-      400,
+      360,
       464
     ],
-    "color": "#a82828"
+    "color": "#a82828",
+    "hash": "eb8e8c52"
   },
   "products/quick-tape-cloth-duct-tape": {
     "width": 480,
     "height": 480,
     "sizes": [
-      400,
+      360,
       480
     ],
-    "color": "#282828"
+    "color": "#282828",
+    "hash": "96952578"
   },
   "products/quick-tape-cross-weave-filament-tape": {
     "width": 524,
     "height": 524,
     "sizes": [
-      400,
+      360,
+      480,
       524
     ],
-    "color": "#a84848"
+    "color": "#a84848",
+    "hash": "9b4cb240"
   },
   "products/quick-tape-parallel-filament-tape": {
     "width": 524,
     "height": 524,
     "sizes": [
-      400,
+      360,
+      480,
       524
     ],
-    "color": "#984848"
+    "color": "#984848",
+    "hash": "d49bc2b2"
   },
   "products/qbono-6665-pet-red-double-sided-tape": {
     "width": 500,
     "height": 500,
     "sizes": [
-      400,
+      360,
       500
     ],
-    "color": "#f8f8f8"
+    "color": "#f8f8f8",
+    "hash": "17a86036"
   },
   "products/qbono-pvc-electrical-tape": {
     "width": 440,
     "height": 440,
     "sizes": [
-      400,
+      360,
       440
     ],
-    "color": "#d8d8d8"
+    "color": "#d8d8d8",
+    "hash": "60726059"
   },
   "products/qbono-4440-cellulose-double-sided-tape": {
     "width": 540,
     "height": 540,
     "sizes": [
-      400,
+      360,
+      480,
       540
     ],
-    "color": "#c8c8d8"
+    "color": "#c8c8d8",
+    "hash": "8fd4abf0"
   },
   "products/qbono-2185-scrim-double-sided-tape": {
     "width": 770,
     "height": 770,
     "sizes": [
-      400,
+      360,
+      480,
+      640,
       770
     ],
-    "color": "#d8d8e8"
+    "color": "#d8d8e8",
+    "hash": "d35b8c62"
   },
   "products/qbono-xpe-double-sided-foam-tape": {
     "width": 500,
     "height": 500,
     "sizes": [
-      400,
+      360,
       500
     ],
-    "color": "#c8c8d8"
+    "color": "#c8c8d8",
+    "hash": "982b7254"
+  },
+  "products/tesa-4965-double-sided-tape": {
+    "width": 560,
+    "height": 560,
+    "sizes": [
+      360,
+      480,
+      560
+    ],
+    "color": "#b8c8a8",
+    "hash": "f46bc50e"
+  },
+  "products/tesa-red-liner-double-sided-tape": {
+    "width": 700,
+    "height": 700,
+    "sizes": [
+      360,
+      480,
+      640,
+      700
+    ],
+    "color": "#981818",
+    "hash": "ce77e3f7"
+  },
+  "products/tesa-plate-mounting-cliche-tape": {
+    "width": 560,
+    "height": 560,
+    "sizes": [
+      360,
+      480,
+      560
+    ],
+    "color": "#e8e8e8",
+    "hash": "50ab21bb"
+  },
+  "products/tesa-professional-strong-duct-tape": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#f8f8f8",
+    "hash": "78fba281"
+  },
+  "products/tesa-masking-tape": {
+    "width": 430,
+    "height": 430,
+    "sizes": [
+      360,
+      430
+    ],
+    "color": "#482828",
+    "hash": "782d4745"
+  },
+  "products/tesa-black-cloth-tape": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#080808",
+    "hash": "1607f82b"
+  },
+  "products/tesa-orange-tape": {
+    "width": 640,
+    "height": 640,
+    "sizes": [
+      360,
+      480,
+      640
+    ],
+    "color": "#782808",
+    "hash": "3041318b"
+  },
+  "products/tesa-blue-tape": {
+    "width": 620,
+    "height": 620,
+    "sizes": [
+      360,
+      480,
+      620
+    ],
+    "color": "#a86838",
+    "hash": "bbd13f82"
+  },
+  "products/nitto-greenhouse-film-tape": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#683818",
+    "hash": "3d908be8"
+  },
+  "products/scotch-3m-permanent-clear-mounting-tape": {
+    "width": 640,
+    "height": 640,
+    "sizes": [
+      360,
+      480,
+      640
+    ],
+    "color": "#e83828",
+    "hash": "7a369d14"
+  },
+  "products/printed-packaging-tape": {
+    "width": 460,
+    "height": 460,
+    "sizes": [
+      360,
+      460
+    ],
+    "color": "#282828",
+    "hash": "905ae3ce"
   },
   "gallery/qbono-pvc-electrical-colors": {
     "width": 450,
     "height": 450,
     "sizes": [
-      400,
+      360,
       450
     ],
-    "color": "#f8f8f8"
+    "color": "#f8f8f8",
+    "hash": "5d92ef3e"
   },
   "gallery/nano-packaging-tape-pair": {
     "width": 640,
     "height": 640,
     "sizes": [
-      400,
+      360,
+      480,
       640
     ],
-    "color": "#984848"
+    "color": "#984848",
+    "hash": "6220be23"
   },
   "gallery/nano-packaging-tape-machine-roll": {
     "width": 510,
     "height": 510,
     "sizes": [
-      400,
+      360,
       510
     ],
-    "color": "#983838"
+    "color": "#983838",
+    "hash": "fb334787"
   },
   "gallery/tesa-white-cloth-tape": {
     "width": 500,
     "height": 500,
     "sizes": [
-      400,
+      360,
       500
     ],
-    "color": "#888878"
-  },
-  "gallery/tesa-and-quick-masking-tape": {
-    "width": 440,
-    "height": 440,
-    "sizes": [
-      400,
-      440
-    ],
-    "color": "#583838"
-  },
-  "gallery/tesa-blue-tape": {
-    "width": 530,
-    "height": 530,
-    "sizes": [
-      400,
-      530
-    ],
-    "color": "#985838"
-  },
-  "categories/filament-tape": {
-    "width": 588,
-    "height": 588,
-    "sizes": [
-      400,
-      588
-    ],
-    "color": "#684838"
+    "color": "#888878",
+    "hash": "c12fd9a3"
   },
   "gallery/lohmann-double-sided-rolls": {
     "width": 452,
     "height": 452,
     "sizes": [
-      400,
+      360,
       452
     ],
-    "color": "#a8a898"
+    "color": "#a8a898",
+    "hash": "71f9bc05"
+  },
+  "gallery/lohmann-boxes": {
+    "width": 720,
+    "height": 720,
+    "sizes": [
+      360,
+      480,
+      640,
+      720
+    ],
+    "color": "#382818",
+    "hash": "52a2c2dd"
+  },
+  "gallery/printed-packaging-tape-wall": {
+    "width": 460,
+    "height": 460,
+    "sizes": [
+      360,
+      460
+    ],
+    "color": "#282828",
+    "hash": "48b66ca3"
+  },
+  "gallery/shelf-tesa-kanafi-and-clear-rolls": {
+    "width": 700,
+    "height": 700,
+    "sizes": [
+      360,
+      480,
+      640,
+      700
+    ],
+    "color": "#b88828",
+    "hash": "07ccc0a3"
+  },
+  "gallery/shelf-cliche-gel-pvc-rolls": {
+    "width": 680,
+    "height": 680,
+    "sizes": [
+      360,
+      480,
+      680
+    ],
+    "color": "#c85848",
+    "hash": "62c0696c"
+  },
+  "gallery/shelf-foam-1mm-and-nano-glass-rolls": {
+    "width": 600,
+    "height": 600,
+    "sizes": [
+      360,
+      480,
+      600
+    ],
+    "color": "#f8e8c8",
+    "hash": "4527f3d7"
+  },
+  "gallery/shelf-cellulose-top-tape-and-filament-rolls": {
+    "width": 610,
+    "height": 610,
+    "sizes": [
+      360,
+      480,
+      610
+    ],
+    "color": "#181818",
+    "hash": "02be3c24"
+  },
+  "categories/filament-tape": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#584848",
+    "hash": "14e9d5d6"
+  },
+  "categories/aluminum-foil-tape": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#683818",
+    "hash": "8e51df95"
+  },
+  "categories/cloth-duct-tape": {
+    "width": 470,
+    "height": 470,
+    "sizes": [
+      360,
+      470
+    ],
+    "color": "#784828",
+    "hash": "75b529b4"
+  },
+  "gallery/duct-tape-colors-row": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#784828",
+    "hash": "ff432de6"
+  },
+  "categories/masking-tape": {
+    "width": 800,
+    "height": 800,
+    "sizes": [
+      360,
+      480,
+      640,
+      800
+    ],
+    "color": "#482818",
+    "hash": "8bb2129e"
   },
   "categories/branded-tapes": {
     "width": 502,
     "height": 502,
     "sizes": [
-      400,
+      360,
       502
     ],
-    "color": "#f8c878"
-  },
-  "categories/heat-resistant-cloth-tape": {
-    "width": 570,
-    "height": 570,
-    "sizes": [
-      400,
-      570
-    ],
-    "color": "#988878"
+    "color": "#f8c878",
+    "hash": "297b1fb7"
   },
   "categories/packaging-tape": {
     "width": 640,
     "height": 640,
     "sizes": [
-      400,
+      360,
+      480,
       640
     ],
-    "color": "#984848"
+    "color": "#984848",
+    "hash": "6220be23"
   }
 }
